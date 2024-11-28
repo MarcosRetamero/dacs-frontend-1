@@ -30,15 +30,19 @@
     <div class="progreso-info">
         <h3>Mi progreso</h3>
         <h3>Evolución del peso</h3>
+        
         <select class="dropdown">
           <option value="semana">Por Semana</option>
           <option value="mes">Por Mes</option>
           <option value="año">Por Año</option>
         </select>
         
+        <div class="chart-container">
+            <canvas #pesoChart></canvas>
+        </div>
         
         <div class="botones-usuario">      
-          <button class="btn-cambiar-objetivo" (click)="cambiarObjetivo()">Agregar peso</button>
+          <button class="btn-cambiar-objetivo" (click)="agregarPeso()">Agregar peso</button>
         </div>
     </div>
   </div>
