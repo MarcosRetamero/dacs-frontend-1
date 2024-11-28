@@ -10,12 +10,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   background-color: var(--light-gray); /* Beige claro */
-
 }
 
 .datos-usuario,
 .entrenador-info {
-  background-color: var(--white); /* Beige claro */
+  background-color: var(--white); /* Blanco */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -85,4 +84,55 @@ body {
   .entrenador-info {
     width: 100%;
   }
+}
+
+/* Estilos específicos para el gráfico */
+.evolucion {
+  background-color: var(--white); /* blanco */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* ocupa todo el ancho disponible */
+  margin-top: 20px;
+}
+
+.evolucion h3 {
+  color: var(--black); /* negro */
+  margin-bottom: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.evolucion select {
+  display: block;
+  margin: 0 auto 20px auto; /* centra y agrega margen inferior */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid var(--dark-gray);
+  border-radius: 5px;
+}
+
+.evolucion canvas {
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.evolucion .btn {
+  background-color: var(--dark-gray);
+  color: var(--white);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: block;
+  margin: 20px auto 0 auto; /* centra el botón y agrega margen superior */
+  text-align: center;
+}
+
+.evolucion .btn:hover {
+  background-color: var(--black);
+  transform: scale(1.05);
 }

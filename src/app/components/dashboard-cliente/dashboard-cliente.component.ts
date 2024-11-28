@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-dashboard-cliente',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-cliente.component.css']
 })
 export class DashboardClienteComponent implements OnInit {
+
+
   // Aquí va tu lógica del componente
   nombre: string = 'Juan Pérez';
   edad: number = 28;
@@ -22,9 +25,44 @@ export class DashboardClienteComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit() {
+    this.crearGraficoEvolucion();
 
+  }
   cambiarObjetivo() {
     console.log('Objetivo cambiado');
   }
+
+crearGraficoEvolucion() {
+  const ctx = document.getElementById('graficoEvolucion') as HTMLCanvasElement;
+
+  // obtener el peso mínimo inicial y calcular el inicio de la escala
+  const pesoInicial = 80;
+  const inicioEscala = pesoInicial - 10;
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto  '],
+      datasets: [
+        {
+          label: 'Peso (kg)',
+          data: [80, 78, 77, 76, 75, 72, 70],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: false, // importante para usar 'min'
+          min: inicioEscala, // inicio de la escala
+        },
+      },
+    },
+  });
+}
 }

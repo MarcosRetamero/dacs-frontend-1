@@ -1,5 +1,7 @@
 <body>
 <div class="dashboard-container">
+
+
   <div class="datos-usuario">
     <h2>{{ nombre }}, {{ edad }} años</h2>
     <p><strong>Objetivo físico:</strong> {{ objetivoFisico }}</p>
@@ -8,6 +10,8 @@
     <p><strong>Entrenador:</strong> {{ entrenador }}</p>
     <button class="btn-cambiar-objetivo" (click)="cambiarObjetivo()">Cambiar objetivo</button>
   </div>
+
+
 
   <div class="entrenador-info">
     <h3>Trainer</h3>
@@ -20,6 +24,21 @@
       <p><strong>Experiencia:</strong> {{ experiencia }}</p>
       <button class="btn-contactar-entrenador">Contactar entrenador</button>
     </div>
+  </div>
+
+
+</div>
+<div class="main-content">
+  <!-- gráfico de evolución -->
+  <div class="evolucion">
+    <h3>tu evolución</h3>
+    <select>
+      <option>Último mes</option>
+      <option>Últimos 3 meses</option>
+      <option>Último año</option>
+    </select>
+    <canvas id="graficoEvolucion"></canvas>
+    <button class="btn">cargar nuevo peso</button>
   </div>
 </div>
 </body>
