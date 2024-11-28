@@ -1,0 +1,88 @@
+body {
+  font-family: 'Roboto', sans-serif; /* Usamos la fuente Roboto desde el CSS global */
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--light-gray); /* Beige claro */
+
+}
+
+.datos-usuario,
+.entrenador-info {
+  background-color: var(--white); /* Beige claro */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 48%;
+}
+
+.datos-usuario h2,
+.entrenador-info h3 {
+  color: var(--black); /* Negro */
+  margin-bottom: 15px;
+  font-size: 24px; /* Tamaño de fuente más grande para los títulos */
+}
+
+.datos-usuario p,
+.entrenador-info p {
+  color: var(--dark-gray); /* Gris oscuro */
+  margin: 10px 0;
+  line-height: 1.6;
+  font-size: 16px; /* Tamaño de fuente cómodo */
+}
+
+.datos-usuario .btn-cambiar-objetivo,
+.entrenador-info .btn-contactar-entrenador {
+  background-color: var(--dark-gray); /* Gris oscuro */
+  color: var(--white); /* Blanco */
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.datos-usuario .btn-cambiar-objetivo:hover,
+.entrenador-info .btn-contactar-entrenador:hover {
+  background-color: var(--black); /* Negro */
+  color: var(--white); /* Blanco */
+  transform: scale(1.05); /* Efecto de suavizado con hover */
+}
+
+.entrenador-info .foto-entrenador {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.entrenador-info .foto-entrenador img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* Hace la imagen redonda */
+  object-fit: cover;
+  border: 2px solid var(--dark-gray);
+}
+
+.entrenador-info .entrenador-details {
+  text-align: left;
+}
+
+/* Asegura que los recuadros no se desalineen */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .datos-usuario,
+  .entrenador-info {
+    width: 100%;
+  }
+}

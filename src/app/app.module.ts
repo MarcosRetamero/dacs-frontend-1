@@ -7,9 +7,15 @@ import { AppComponent } from './app.component';
 import { initializeKeycloak } from './core/init/keycloak-init.factory';
 import { ApiService } from './core/services/apiservice.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
+import { LayoutComponent } from './components/layout/layout.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardClienteComponent,
+    LayoutComponent
+
   ],
   imports: [
     BrowserModule,
@@ -28,6 +34,6 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  
+export class AppModule {
+
 }

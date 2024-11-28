@@ -1,0 +1,25 @@
+<body>
+<div class="dashboard-container">
+  <div class="datos-usuario">
+    <h2>{{ nombre }}, {{ edad }} años</h2>
+    <p><strong>Objetivo físico:</strong> {{ objetivoFisico }}</p>
+    <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg - <strong>Peso actual:</strong> {{ pesoActual }} kg</p>
+    <p><strong>Índice de grasa corporal:</strong> {{ grasaCorporal }}%</p>
+    <p><strong>Entrenador:</strong> {{ entrenador }}</p>
+    <button class="btn-cambiar-objetivo" (click)="cambiarObjetivo()">Cambiar objetivo</button>
+  </div>
+
+  <div class="entrenador-info">
+    <h3>Trainer</h3>
+    <h3>{{nombreEntrenador}}</h3>
+    <div class="entrenador-img">
+      <img src="assets/images/image.png" alt="Foto de {{ entrenador }}" class="foto-entrenador">
+    </div>
+    <div class="entrenador-details">
+      <p><strong>Especialidad:</strong> {{ especialidad }}</p>
+      <p><strong>Experiencia:</strong> {{ experiencia }}</p>
+      <button class="btn-contactar-entrenador">Contactar entrenador</button>
+    </div>
+  </div>
+</div>
+</body>
