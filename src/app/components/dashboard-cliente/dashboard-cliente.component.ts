@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-cliente',
-  templateUrl: './dashboard-cliente.component.html',  // Asegúrate de que el archivo sea correcto
+  templateUrl: './dashboard-cliente.component.html',
   styleUrls: ['./dashboard-cliente.component.css']
 })
-export class DashboardClienteComponent implements OnInit {
-  // Aquí va tu lógica del componente
+export class DashboardClienteComponent {
+  // Datos de usuario
   nombre: string = 'Juan Pérez';
   edad: number = 28;
   objetivoFisico: string = 'Perder peso y ganar masa muscular';

@@ -3,23 +3,25 @@ body {
 }
 
 .dashboard-container {
-  display: flex;
+  display:grid;
   justify-content: space-between;
   gap: 20px;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
   background-color: var(--light-gray); /* Beige claro */
+  grid-template-columns: repeat(2,1fr);
 
 }
 
 .datos-usuario,
-.entrenador-info {
+.entrenador-info,
+.progreso-info {
   background-color: var(--white); /* Beige claro */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 48%;
+  width:auto;
 }
 
 .datos-usuario h2,
@@ -35,6 +37,9 @@ body {
   margin: 10px 0;
   line-height: 1.6;
   font-size: 16px; /* Tamaño de fuente cómodo */
+  display: flex;
+  flex-direction: column;
+
 }
 
 .datos-usuario .btn-cambiar-objetivo,
@@ -49,6 +54,20 @@ body {
   transition: background-color 0.3s ease, transform 0.2s ease;
   margin-top: 20px;
   text-align: center;
+}
+
+.datos-usuario{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.botones-usuario {
+  display: flex;
+  flex-direction: row; /* Los botones estarán en una columna */
+  gap: 10px; /* Separación entre botones */
+  justify-content: end;
+  align-items: end;
 }
 
 .datos-usuario .btn-cambiar-objetivo:hover,
@@ -75,6 +94,39 @@ body {
   text-align: left;
 }
 
+.progreso-info {
+ grid-column: 1/3; 
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ padding: 20px;
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.progreso-info button {
+  background-color: var(--dark-gray); /* Gris oscuro */
+  color: var(--white); /* Blanco */
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.info-destacada{
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* Asegura que los recuadros no se desalineen */
 @media (max-width: 768px) {
   .dashboard-container {
@@ -85,4 +137,29 @@ body {
   .entrenador-info {
     width: 100%;
   }
+}
+
+.dropdown {
+  width: 150px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgb(227, 227, 227);
+  margin: 10px 0;
+  background-color: var(--white);
+  font-size: 14px;
+  color: var(--dark-gray);
+  cursor: pointer;
+  padding-right: 30px;
+  transition: all 0.2s ease;
+}
+
+.dropdown:hover {
+  border-color: var(--black);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: var(--black);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
