@@ -9,7 +9,7 @@ body {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: var(--light-gray); /* Beige claro */
+  background-color: var(--light-grey); /* Beige claro */
   grid-template-columns: repeat(2,1fr);
 
 }
@@ -33,7 +33,7 @@ body {
 
 .datos-usuario p,
 .entrenador-info p {
-  color: var(--dark-gray); /* Gris oscuro */
+  color: var(--grey); /* Gris oscuro */
   margin: 10px 0;
   line-height: 1.6;
   font-size: 16px; /* Tamaño de fuente cómodo */
@@ -44,7 +44,7 @@ body {
 
 .datos-usuario .btn-cambiar-objetivo,
 .entrenador-info .btn-contactar-entrenador {
-  background-color: var(--dark-gray); /* Gris oscuro */
+  background-color: var(--grey); /* Gris oscuro */
   color: var(--white); /* Blanco */
   padding: 12px 20px;
   border: none;
@@ -82,12 +82,12 @@ body {
   margin-bottom: 20px;
 }
 
-.entrenador-info .foto-entrenador img {
+.entrenador-img img {
   width: 120px;
   height: 120px;
-  border-radius: 50%; /* Hace la imagen redonda */
+  border-radius: 100%; /* Hace la imagen redonda */
   object-fit: cover;
-  border: 2px solid var(--dark-gray);
+  border: 2px solid var(--grey);
 }
 
 .entrenador-info .entrenador-details {
@@ -107,7 +107,7 @@ body {
 
 
 .progreso-info button {
-  background-color: var(--dark-gray); /* Gris oscuro */
+  background-color: var(--grey); /* Gris oscuro */
   color: var(--white); /* Blanco */
   padding: 12px 20px;
   border: none;
@@ -147,7 +147,7 @@ body {
   margin: 10px 0;
   background-color: var(--white);
   font-size: 14px;
-  color: var(--dark-gray);
+  color: var(--grey);
   cursor: pointer;
   padding-right: 30px;
   transition: all 0.2s ease;

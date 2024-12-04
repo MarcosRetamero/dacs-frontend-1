@@ -1,17 +1,23 @@
 /* global color palette */
 :root {
-  --white: #ffffff; /* blanco */
-  --light-green: #cbe86b; /* verde claro */
-  --beige: #f2e9e1; /* beige */
-  --black: #000000; /* negro */
-  --dark-gray: #444444; /* gris oscuro */
-  --light-gray: #f4f4f4; /* gris muy claro para el fondo */
+  --white: #F6F6F6; /* blanco */
+  --light-grey: #E8E8E8; /* verde claro */
+  --grey: #292929; /* beige */
+  --dark-red: #710D07; /* negro */
+  --red: #F1351C; /* gris oscuro */
+  --light-red: #F67D59; /* gris muy claro para el fondo */
+  --black: #000000 ;
 
   /* Fuentes */
   --font-primary: 'Roboto', sans-serif;
   --font-secondary: 'Open Sans', sans-serif;
 }
 
+body{
+  margin:0;
+}
+
 /* Importamos las fuentes desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+

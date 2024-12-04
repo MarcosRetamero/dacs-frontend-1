@@ -42,7 +42,7 @@ export class DashboardClienteComponent implements OnInit {
         datasets: [{
           label: 'Peso (kg)',
           data: [80, 78, 76, 75, 75],
-          backgroundColor: '#cbe86ba8',
+          backgroundColor: '#710D07',
           borderColor: 'var(--primary-color)',
           borderWidth: 1
         }]
