@@ -9,6 +9,7 @@ import { DashboardClienteComponent } from './components/dashboard-cliente/dashbo
 import { LayoutComponent } from './components/layout/layout.component';
 import { PanelEntrenadorComponent } from './components/panel-entrenador/panel-entrenador.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CrearPlanComponent } from './components/crear-plan/crear-plan.component
     DashboardClienteComponent,
     LayoutComponent,
     PanelEntrenadorComponent,
-    CrearPlanComponent
+    CrearPlanComponent,
+    StudentDetailsComponent
   ],
   imports: [
     BrowserModule,
