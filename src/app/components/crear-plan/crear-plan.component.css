@@ -1,11 +1,14 @@
 /* Estilos generales */
-
+body {
+  background-image: url('assets/images/wallpaper.png');
+  background-position: center; /* Centra la imagen */
+  padding: 30px 0px;
+}
 
 .modo-oscuro-toggle {
     display: flex;
     justify-content: flex-end;
     padding: 5px;
-    background-color: var(--light-grey);
     padding-right: 200px;
     padding-bottom: 10px;
 
@@ -14,7 +17,6 @@
 .container-crear-plan{
     display: flex;
     justify-content: center;
-    background-color: var(--light-grey);
     height: 100%;
 }
 .container {
@@ -25,6 +27,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
     width: 70%;
+    box-shadow: 0px 0px 10px 5px rgb(255, 0, 0);
+    border-radius: 10px;
+  }
+
+  .botones-plan{
+    display: flex;
+    flex-direction: row;
   }
   
   .title {
@@ -148,12 +157,7 @@
   }
   
   /* Modo oscuro */
-  .container-crear-plan.dark-mode  {
-    background-color: var(--grey);
-  }
-  .modo-oscuro-toggle.dark-mode {
-    background-color: var(--grey);
-  }
+
   
 
   .container.dark-mode {
@@ -225,6 +229,11 @@
     color: white;
   }
   
+#botones-plan{
+  margin-bottom: 20px;
+}
+
+
   /* Responsividad */
   @media (max-width: 768px) {
     .container {

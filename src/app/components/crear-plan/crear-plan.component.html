@@ -1,3 +1,5 @@
+
+<body>
 <div class="modo-oscuro-toggle" [class.dark-mode]="isDarkMode">
     <button (click)="toggleDarkMode()">
         {{ isDarkMode ? '☀️' : '🌙' }}
@@ -20,7 +22,7 @@
       <input id="cantidadDias" [(ngModel)]="cantidadDias" type="number" min="1" placeholder="Cantidad de días" />
     </div>
   
-    <button (click)="generarDias()" [disabled]="cantidadDias <= 0">Generar Días</button>
+    <button id="botones-plan" (click)="generarDias()" [disabled]="cantidadDias <= 0">Generar Días</button>
   
     <!-- Crear días -->
     <div *ngFor="let dia of dias; let i = index" class="card">
@@ -108,10 +110,9 @@
         </div>
       </div>
     </div>
-  
     <!-- Botón de guardar plan -->
-    <button (click)="guardarPlan()">Guardar Plan</button>
+      <button id="botones-plan" (click)="guardarPlan()">Guardar Plan</button>
   </div>
 </div>
-
+</body>
   

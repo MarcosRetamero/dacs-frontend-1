@@ -23,6 +23,29 @@ export class DashboardClienteComponent implements OnInit {
   nombreEntrenador: string = 'Gago';
   especialidad: string = 'Entrenamiento de fuerza';
   experiencia: string = '5 años de experiencia';
+  planEntrenamiento = [
+    {
+      dia: 'Lunes',
+      grupoMuscular: 'Pecho y tríceps',
+      ejercicios: [
+        { nombre: 'Press de banca', series: 4, repeticiones: 10, descanso: 60 },
+        { nombre: 'Aperturas con mancuernas', series: 3, repeticiones: 12, descanso: 60 },
+        { nombre: 'Fondos', series: 3, repeticiones: 15, descanso: 60 }
+      ]
+    },
+    {
+      dia: 'Martes',
+      grupoMuscular: 'Piernas y glúteos',
+      ejercicios: [
+        { nombre: 'Sentadillas', series: 4, repeticiones: 12, descanso: 90 },
+        { nombre: 'Peso muerto', series: 3, repeticiones: 10, descanso: 90 },
+        { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 }
+      ]
+    }
+  ];
+  
+  
+  
 
   constructor() { }
 
