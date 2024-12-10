@@ -6,6 +6,9 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { PanelEntrenadorComponent } from './components/panel-entrenador/panel-entrenador.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { RegistroUserComponent } from './components/registro-user/registro-user.component';
+import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alumno.component';
+import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 const routes: Routes = [
 //  { path: '', canActivate: [AuthGuard]},
 //{ path: '**', redirectTo: '' },
@@ -14,6 +17,9 @@ const routes: Routes = [
 { path: 'panel-entrenador', component: PanelEntrenadorComponent }, // ruta para el dashboard
 { path: 'crear-plan', component: CrearPlanComponent }, // ruta para el dashboard
 { path: 'student-details', component: StudentDetailsComponent }, // ruta para el dashboard
+{ path: 'registro-user', component: RegistroUserComponent }, // ruta para el dashboard
+{ path: 'agregar-alumno', component: AgregarAlumnoComponent }, // ruta para el dashboard
+{ path: 'plan-entrenamiento', component: PlanEntrenamientoComponent }, // ruta para el dashboard
 { path: '**', redirectTo: '/dashboard-cliente' }, // wildcard al final para manejar rutas no coincidentes
 
 ];

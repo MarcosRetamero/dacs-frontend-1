@@ -6,19 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./student-details.component.css'],
 })
 export class StudentDetailsComponent {
-  student = {
-    name: 'Ana García',
-    age: 28,
-    email: 'ana.garcia@email.com',
-    phone: '+34 123 456 789',
-    startDate: '01/01/2023',
-    currentPlan: 'Plan Básico de Fuerza',
-    measurements: {
-      weight: 65, // Peso en kg
-      height: 165, // Altura en cm
-      bodyFat: 22, // Porcentaje de grasa corporal
-    },
-  };
+student = {
+  name: 'Ana García',
+  age: 28,
+  email: 'ana.garcia@email.com',
+  phone: '+34 123 456 789',
+  startDate: '01/01/2023',
+  currentPlan: 'Plan Básico de Fuerza',
+  measurements: {
+    weight: 65, // Peso en kg
+    height: 165, // Altura en cm
+    bodyFat: 22, // Porcentaje de grasa corporal
+  },
+};
   selectedPlan: string = '';
   availablePlans = [
     { id: 'plan1', name: 'Plan Básico de Fuerza' },

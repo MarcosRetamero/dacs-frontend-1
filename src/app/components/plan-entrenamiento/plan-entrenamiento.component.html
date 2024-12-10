@@ -1,0 +1,39 @@
+
+<body>
+
+    <div class="container">
+        <h1>Plan de Entrenamiento</h1>
+      
+        <div *ngFor="let day of trainingPlan" class="day-card">
+          <h2 class="day-title">{{ day.day }}</h2>
+          <p class="muscle-groups">{{ day.muscleGroups }}</p>
+          
+          <div class="exercise-list">
+            <div *ngFor="let exercise of day.exercises" class="exercise-card">
+              <div class="image-container">
+                <!-- Si hay imagen, se renderiza, si no, se muestra un mensaje -->
+                <img *ngIf="exercise.imageUrl" [src]="exercise.imageUrl" [alt]="'Demostración de ' + exercise.name" />
+                <div *ngIf="!exercise.imageUrl" class="w-full h-full flex items-center justify-center text-muted-foreground">
+                  Imagen del ejercicio
+                </div>
+              </div>
+              <h3>{{ exercise.name }}</h3>
+              <div class="exercise-info">
+                <div>
+                  <p>Series</p>
+                  <p>{{ exercise.sets }}</p>
+                </div>
+                <div>
+                  <p>Repeticiones</p>
+                  <p>{{ exercise.reps }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</body>
+<footer class="footer">
+    <p>© 2024 MuscleHub. Todos los derechos reservados.</p>
+</footer>
