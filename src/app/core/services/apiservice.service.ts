@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { IRequestTest } from '../models/request.interface';
-
 import { IResponse, ITestResponse } from '../models/response.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +15,9 @@ export class ApiService {
 
     }
 
+    getJsonDePrueba(): Observable<any> {
+      return this.http.get<any>('https://jsonplaceholder.typicode.com/todos/1');
+    }
 
     getPing() {
         const url = `${environment.backendForFrontendUrl}/ping`;
@@ -37,7 +40,7 @@ export class ApiService {
             .pipe();
     }
 
-    postTest(param: IRequestTest) { 
+    postTest(param: IRequestTest) {
         const url = `${environment.backendForFrontendUrl}/test`;
         return this.http.post<any[]>(url, param, this.headers);
     }
