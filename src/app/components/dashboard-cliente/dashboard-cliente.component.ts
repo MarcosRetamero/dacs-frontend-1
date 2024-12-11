@@ -39,6 +39,8 @@ export class DashboardClienteComponent implements OnInit {
       ejercicios: [
         { nombre: 'Sentadillas', series: 4, repeticiones: 12, descanso: 90 },
         { nombre: 'Peso muerto', series: 3, repeticiones: 10, descanso: 90 },
+        { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 },
+        { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 },
         { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 }
       ]
     }

@@ -5,11 +5,7 @@
         <h2>{{ nombre }}, {{ edad }} años</h2>
         <p><strong>Objetivo físico:</strong> {{ objetivoFisico }}</p>
         <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg - <strong>Peso actual:</strong> {{ pesoActual }} kg</p>
-        <p><strong>Índice de grasa corporal:</strong> {{ grasaCorporal }}%</p>
-        <p><strong>Entrenador:</strong> {{ entrenador }}</p>        
-      </div>
-      <div class="botones-usuario">
-          <button class="btn-cambiar-objetivo" (click)="cambiarObjetivo()">Cambiar objetivo</button>
+        <p><strong>Índice de grasa corporal:</strong> {{ grasaCorporal }}%</p>     
       </div>
     </div>
 
@@ -21,7 +17,6 @@
       </div>
       <div class="entrenador-details">
         <p><strong>Especialidad:</strong> {{ especialidad }}</p>
-        <p><strong>Experiencia:</strong> {{ experiencia }}</p>
       </div>
     </div>
 
@@ -31,13 +26,7 @@
         <div class="dia" *ngFor="let dia of planEntrenamiento">
           <h4>{{ dia.dia }}</h4>
           <p>{{ dia.grupoMuscular }}</p>
-          <ul>
-            <li *ngFor="let ejercicio of dia.ejercicios">
-              <p><strong>Ejercicio:</strong> {{ ejercicio.nombre }}</p>
-              <p><strong>Series:</strong> {{ ejercicio.series }}</p>
-              <p><strong>Repeticiones:</strong> {{ ejercicio.repeticiones }}</p>
-            </li>
-          </ul>
+          <button  class="entrenamiento-btn" [routerLink]="['/plan-entrenamiento']">Ver entrenamiento</button>
         </div>
       </div>
     </div>

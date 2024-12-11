@@ -28,15 +28,6 @@ export class PlanEntrenamientoComponent {
         { name: 'Aperturas con mancuernas', sets: 3, reps: 12 },
         { name: 'Fondos', sets: 3, reps: 15 },
       ],
-    },
-    {
-      day: 'Martes',
-      muscleGroups: 'Piernas y glúteos',
-      exercises: [
-        { name: 'Sentadillas', sets: 4, reps: 12 },
-        { name: 'Peso muerto', sets: 3, reps: 10 },
-        { name: 'Zancadas', sets: 3, reps: 12 },
-      ],
-    },
+    }
   ];
 }

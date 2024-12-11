@@ -248,3 +248,17 @@ footer.footer {
   margin-top: auto;
   font-family: 'Roboto', sans-serif; /* Usamos la fuente Roboto desde el CSS global */
 }
+
+
+.entrenamiento-btn{
+  background-color: var(--grey); /* Gris oscuro */
+  color: var(--white); /* Blanco */
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+}

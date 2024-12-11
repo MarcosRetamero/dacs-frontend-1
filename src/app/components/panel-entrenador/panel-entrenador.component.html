@@ -37,7 +37,7 @@
         </tr>
       </tbody>
     </table>
-    <button class="boton-agregar" (click)="agregarAlumno()">Agregar</button>
+    <button class="boton-agregar" (click)="agregarAlumno()"[routerLink]="['/agregar-alumno']">Agregar</button>
   </div>
 
   <!-- Listado de Rutinas -->
@@ -54,7 +54,7 @@
         <tr *ngFor="let rutina of rutinasFiltradas">
           <td style="width: 90%">{{ rutina.nombre }}</td>
           <td style="text-align: right">
-            <button (click)="verDetalleRutina(rutina)" [routerLink]="['/crear-plan']">Ver</button>
+            <button (click)="verDetalleRutina(rutina)" [routerLink]="['/plan-entrenamiento']">Ver</button>
           </td>
         </tr>
       </tbody>
