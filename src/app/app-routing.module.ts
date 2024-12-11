@@ -22,6 +22,7 @@ const routes: Routes = [
 { path: 'agregar-alumno', component: AgregarAlumnoComponent }, // ruta para el dashboard
 { path: 'plan-entrenamiento', component: PlanEntrenamientoComponent }, // ruta para el dashboard
 { path: 'registro-entrenador', component: RegistroEntrenadorComponent }, // ruta para el dashboard
+{ path: 'plan-entrenamiento/:day', component: PlanEntrenamientoComponent },
 { path: '**', redirectTo: '/dashboard-cliente' }, // wildcard al final para manejar rutas no coincidentes
 
 ];

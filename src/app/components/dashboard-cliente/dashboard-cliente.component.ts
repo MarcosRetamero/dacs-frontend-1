@@ -17,37 +17,14 @@ export class DashboardClienteComponent implements OnInit {
   pesoInicial: number = 80;
   pesoActual: number = 75;
   grasaCorporal: number = 18;
-  entrenador: string = 'Carlos López';
-  gimnasio: string = 'Gimnasio Elite';
-
-  nombreEntrenador: string = 'Gago';
+  nombreEntrenador: string = 'Carlos López';
   especialidad: string = 'Entrenamiento de fuerza';
-  experiencia: string = '5 años de experiencia';
+
   planEntrenamiento = [
-    {
-      dia: 'Lunes',
-      grupoMuscular: 'Pecho y tríceps',
-      ejercicios: [
-        { nombre: 'Press de banca', series: 4, repeticiones: 10, descanso: 60 },
-        { nombre: 'Aperturas con mancuernas', series: 3, repeticiones: 12, descanso: 60 },
-        { nombre: 'Fondos', series: 3, repeticiones: 15, descanso: 60 }
-      ]
-    },
-    {
-      dia: 'Martes',
-      grupoMuscular: 'Piernas y glúteos',
-      ejercicios: [
-        { nombre: 'Sentadillas', series: 4, repeticiones: 12, descanso: 90 },
-        { nombre: 'Peso muerto', series: 3, repeticiones: 10, descanso: 90 },
-        { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 },
-        { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 },
-        { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 }
-      ]
-    }
+    { dia: 'Lunes', grupoMuscular: 'Pecho y tríceps' },
+    { dia: 'Martes', grupoMuscular: 'Piernas y glúteos' },
+    { dia: 'Miércoles', grupoMuscular: 'Espalda y bíceps' },
   ];
-  
-  
-  
 
   constructor() { }
 
@@ -59,7 +36,7 @@ export class DashboardClienteComponent implements OnInit {
 
   private createChart() {
     const ctx = this.chartCanvas.nativeElement;
-    
+
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -76,33 +53,12 @@ export class DashboardClienteComponent implements OnInit {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              color: 'rgba(0, 0, 0, 0.1)'
-            }
-          },
-          x: {
-            grid: {
-              display: false
-            }
-          }
+          y: { beginAtZero: true },
+          x: { grid: { display: false } }
         },
-        plugins: {
-          legend: {
-            display: false
-          }
-        }
+        plugins: { legend: { display: false } }
       }
     });
-  }
-
-  cambiarObjetivo() {
-    console.log('Cambiando objetivo físico');
-  }
-
-  verProgreso() {
-    console.log('Mostrando progreso');
   }
 
   agregarPeso() {
