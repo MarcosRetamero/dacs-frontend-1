@@ -24,7 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 import { MatCardModule } from '@angular/material/card';
-
+import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { MatCardModule } from '@angular/material/card';
     RegistroUserComponent,
     AgregarAlumnoComponent,
     PlanEntrenamientoComponent,
+    RegistroEntrenadorComponent
     
   ],
   imports: [
@@ -51,7 +52,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule, // Botones
     MatTableModule, // Tablas
     MatIconModule, // Opcional si usas iconos
-    MatCardModule, // Tarjetas
+    MatCardModule // Tarjetas
   ],
   providers: [],
   bootstrap: [AppComponent],

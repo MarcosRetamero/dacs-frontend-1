@@ -47,7 +47,14 @@ body {
 .card-title {
   font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0px;
+
+}
+h1.card-title {
+  font-size: 1.8rem;
+  margin-top: 10px;
 }
 
 .card-content label {
