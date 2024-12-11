@@ -1,0 +1,78 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError, of, switchMap } from 'rxjs';
+
+// Definimos las interfaces para las respuestas de cada endpoint
+export interface Customer {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+}
+
+export interface Trainer {
+  id: number;
+  name: string;
+  expertise: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomerService {
+  private baseUrl = 'https://api.example.com'; // Base URL de la API
+
+  constructor(private http: HttpClient) {}
+
+  // Método para obtener todos los clientes
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.baseUrl}/api/customers`).pipe(
+      catchError((error) => {
+        console.error('Error al cargar los clientes:', error);
+        return of([]); // Retornamos un arreglo vacío en caso de error
+      })
+    );
+  }
+
+  // Método para obtener un cliente por su ID
+  getCustomerById(id: number): Observable<Customer | undefined> {
+    return this.http.get<Customer>(`${this.baseUrl}/api/customers/${id}`).pipe(
+      catchError((error) => {
+        console.error(`Error al obtener el cliente con ID ${id}:`, error);
+        return of(undefined); // Retornamos undefined en caso de error
+      })
+    );
+  }
+
+  // Método para obtener la información del entrenador de un cliente
+  getTrainerInfo(customerId: number): Observable<Trainer | undefined> {
+    return this.http.get<Trainer>(`${this.baseUrl}/api/trainers/${customerId}`).pipe(
+      catchError((error) => {
+        console.error(`Error al obtener el entrenador para el cliente ${customerId}:`, error);
+        return of(undefined); // Retornamos undefined en caso de error
+      })
+    );
+  }
+
+  // Método para obtener un cliente y su entrenador en paralelo (concurrencia)
+  getCustomerWithTrainer(id: number): Observable<{ customer: Customer | undefined, trainer: Trainer | undefined }> {
+    return this.getCustomerById(id).pipe(
+      switchMap((customer) => {
+        if (customer) {
+          // Si encontramos al cliente, obtenemos al entrenador en paralelo
+          return this.getTrainerInfo(customer.id).pipe(
+            map((trainer) => ({ customer, trainer }))
+          );
+        } else {
+          // Si no encontramos al cliente, retornamos ambos como undefined
+          return of({ customer: undefined, trainer: undefined });
+        }
+      }),
+      catchError((error) => {
+        console.error('Error en la obtención de cliente y entrenador:', error);
+        return of({ customer: undefined, trainer: undefined }); // Manejo de errores en todo el flujo
+      })
+    );
+  }
+}

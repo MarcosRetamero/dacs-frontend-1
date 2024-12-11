@@ -1,0 +1,17 @@
+{
+  "usuario": {
+    "nombre": "Francisco Dutra",
+    "edad": 23,
+    "objetivoFisico": "Perder peso y ganar masa muscular",
+    "pesoInicial": 77,
+    "pesoActual": 75,
+    "grasaCorporal": 18,
+    "entrenador": "Carlos López",
+    "gimnasio": "Gimnasio Elite"
+  },
+  "entrenador": {
+    "nombreEntrenador": "Marcos",
+    "especialidad": "Entrenamiento de fuerza",
+    "experiencia": "5 años de experiencia"
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { CustomerService } from '../../core/services/costumerService';
 
 @Component({
   selector: 'app-dashboard-cliente',
@@ -11,18 +12,18 @@ export class DashboardClienteComponent implements OnInit {
   private chart!: Chart;
 
   // Datos de usuario
-  nombre: string = 'Juan Pérez';
-  edad: number = 28;
-  objetivoFisico: string = 'Perder peso y ganar masa muscular';
-  pesoInicial: number = 80;
-  pesoActual: number = 75;
-  grasaCorporal: number = 18;
-  entrenador: string = 'Carlos López';
-  gimnasio: string = 'Gimnasio Elite';
+  nombre: string = '';
+  edad: number = 0;
+  objetivoFisico: string = '';
+  pesoInicial: number = 0;
+  pesoActual: number = 0;
+  grasaCorporal: number = 0;
+  entrenador: string = '';
+  gimnasio: string = '';
 
-  nombreEntrenador: string = 'Gago';
-  especialidad: string = 'Entrenamiento de fuerza';
-  experiencia: string = '5 años de experiencia';
+  nombreEntrenador: string = '';
+  especialidad: string = '';
+  experiencia: string = '';
   planEntrenamiento = [
     {
       dia: 'Lunes',
@@ -43,13 +44,30 @@ export class DashboardClienteComponent implements OnInit {
       ]
     }
   ];
-  
-  
-  
 
-  constructor() { }
+  constructor(private customerService: CustomerService) {} // inyecta el servicio
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // Llama al servicio para obtener los datos del JSON
+    this.customerService.getCustomers().subscribe((data: any) => {
+      const usuario = data.usuario;
+      const entrenador = data.entrenador;
+
+      // Asigna los valores obtenidos del JSON
+      this.nombre = usuario.nombre;
+      this.edad = usuario.edad;
+      this.objetivoFisico = usuario.objetivoFisico;
+      this.pesoInicial = usuario.pesoInicial;
+      this.pesoActual = usuario.pesoActual;
+      this.grasaCorporal = usuario.grasaCorporal;
+      this.entrenador = usuario.entrenador;
+      this.gimnasio = usuario.gimnasio;
+
+      this.nombreEntrenador = entrenador.nombreEntrenador;
+      this.especialidad = entrenador.especialidad;
+      this.experiencia = entrenador.experiencia;
+    });
+  }
 
   ngAfterViewInit() {
     this.createChart();
@@ -57,7 +75,7 @@ export class DashboardClienteComponent implements OnInit {
 
   private createChart() {
     const ctx = this.chartCanvas.nativeElement;
-    
+
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
