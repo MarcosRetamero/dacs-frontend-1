@@ -25,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 import { MatCardModule } from '@angular/material/card';
 import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
+import { EjercicioService } from './core/services/ejercicio.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { RegistroEntrenadorComponent } from './components/registro-entrenador/re
     MatIconModule, // Opcional si usas iconos
     MatCardModule // Tarjetas
   ],
-  providers: [],
+  providers: [EjercicioService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

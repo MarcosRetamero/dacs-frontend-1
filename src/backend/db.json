@@ -1,0 +1,10 @@
+{
+    "alumnos": [
+      { "id": 1, "nombre": "Ana García", "edad": 20, "pesoActual": 55 },
+      { "id": 2, "nombre": "Carlos López", "edad": 22, "pesoActual": 70 },
+      { "id": 3, "nombre": "María Rodríguez", "edad": 21, "pesoActual": 58 },
+      { "id": 4, "nombre": "Juan Martínez", "edad": 23, "pesoActual": 75 },
+      { "id": 5, "nombre": "Laura", "edad": 20, "pesoActual": 60 }
+    ]
+  }
+  
