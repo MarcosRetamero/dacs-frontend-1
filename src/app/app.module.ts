@@ -7,10 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-// Keycloak
+//Keycloak
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './core/keycloak-init.factory';
 import { AuthInterceptor } from './auth/auth.interceptor';
+
+
 
 // Componentes
 import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
@@ -20,9 +22,6 @@ import { CrearPlanComponent } from './components/crear-plan/crear-plan.component
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { RegistroUserComponent } from './components/registro-user/registro-user.component';
 import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alumno.component';
-import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
-import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
-import { TestBffComponent } from './components/testbff/testbff.component';
 
 // Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,7 +29,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 import { MatCardModule } from '@angular/material/card';
+import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
+import { TestBffComponent } from './components/testbff/testbff.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { MatCardModule } from '@angular/material/card';
     AgregarAlumnoComponent,
     PlanEntrenamientoComponent,
     RegistroEntrenadorComponent,
-    TestBffComponent
+    TestBffComponent,
+    KeycloakAngularModule 
+    
   ],
   imports: [
     BrowserModule,
@@ -58,8 +62,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule, // Botones
     MatTableModule, // Tablas
     MatIconModule, // Opcional si usas iconos
-    MatCardModule, // Tarjetas
-    KeycloakAngularModule // Keycloak Module importado correctamente
+    MatCardModule // Tarjetas
   ],
   providers: [
     {
