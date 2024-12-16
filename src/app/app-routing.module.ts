@@ -10,6 +10,7 @@ import { RegistroUserComponent } from './components/registro-user/registro-user.
 import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alumno.component';
 import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
+import { TestBffComponent } from './components/testbff/testbff.component';
 const routes: Routes = [
 //  { path: '', canActivate: [AuthGuard]},
 //{ path: '**', redirectTo: '' },
@@ -22,7 +23,8 @@ const routes: Routes = [
 { path: 'agregar-alumno', component: AgregarAlumnoComponent }, // ruta para el dashboard
 { path: 'plan-entrenamiento', component: PlanEntrenamientoComponent }, // ruta para el dashboard
 { path: 'registro-entrenador', component: RegistroEntrenadorComponent }, // ruta para el dashboard
-{ path: 'plan-entrenamiento/:day', component: PlanEntrenamientoComponent },
+{ path: 'plan-entrenamiento/:day', component: PlanEntrenamientoComponent }, // ruta para el dashboard
+{ path: 'testbff', component: TestBffComponent }, // ruta para el dashboard
 { path: '**', redirectTo: '/dashboard-cliente' }, // wildcard al final para manejar rutas no coincidentes
 
 ];

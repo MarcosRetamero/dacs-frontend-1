@@ -25,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 import { MatCardModule } from '@angular/material/card';
 import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
+import { TestBffComponent } from './components/testbff/testbff.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RegistroEntrenadorComponent } from './components/registro-entrenador/re
     RegistroUserComponent,
     AgregarAlumnoComponent,
     PlanEntrenamientoComponent,
-    RegistroEntrenadorComponent
+    RegistroEntrenadorComponent,
+    TestBffComponent
     
   ],
   imports: [

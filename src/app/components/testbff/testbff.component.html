@@ -1,0 +1,12 @@
+<div *ngIf="loading">Cargando...</div>
+
+<div *ngIf="!loading">
+  <ul>
+    <li *ngFor="let item of datos">
+      {{ item.name }}<br>
+      {{ item.email }}<br>
+      {{ item.phone }}<br>
+      {{ item.address.city }}, {{ item.address.zipcode }}<br>
+    </li>
+  </ul>
+</div>
