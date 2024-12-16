@@ -1,11 +1,18 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Para animaciones de Angular Material
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+//Keycloak
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './core/keycloak-init.factory';
+import { AuthInterceptor } from './auth/auth.interceptor';
+
+
 
 // Componentes
 import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
@@ -39,7 +46,8 @@ import { TestBffComponent } from './components/testbff/testbff.component';
     AgregarAlumnoComponent,
     PlanEntrenamientoComponent,
     RegistroEntrenadorComponent,
-    TestBffComponent
+    TestBffComponent,
+    KeycloakAngularModule 
     
   ],
   imports: [
@@ -56,7 +64,19 @@ import { TestBffComponent } from './components/testbff/testbff.component';
     MatIconModule, // Opcional si usas iconos
     MatCardModule // Tarjetas
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      deps: [KeycloakService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
