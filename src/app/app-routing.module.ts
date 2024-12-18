@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//import { AuthGuard } from './core/guard/auth.guard';
+import { AuthGuard } from './core/guard/auth.guard';
 import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PanelEntrenadorComponent } from './components/panel-entrenador/panel-entrenador.component';
@@ -12,8 +12,8 @@ import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan
 import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
 import { TestBffComponent } from './components/testbff/testbff.component';
 const routes: Routes = [
-//  { path: '', canActivate: [AuthGuard]},
-//{ path: '**', redirectTo: '' },
+{ path: '', canActivate: [AuthGuard]},
+{ path: '**', redirectTo: '' },
 { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // redirige la raíz al dashboard
 { path: 'dashboard-cliente', component: DashboardClienteComponent }, // ruta para el dashboard
 { path: 'panel-entrenador', component: PanelEntrenadorComponent }, // ruta para el dashboard
