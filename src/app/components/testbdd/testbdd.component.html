@@ -37,7 +37,7 @@
     <!-- Sección de Planes de Entrenamiento -->
     <h2>Planes de Entrenamiento</h2>
     <div *ngFor="let plan of trainingPlans">
-      <p>{{ plan.goal }} - {{ plan.days_in_week }} días/semana</p>
+      <p>{{ plan.goal }} - {{ plan.daysInWeek }} días/semana</p>
       <button (click)="deleteTrainingPlan(plan.id)">Eliminar</button>
     </div>
   
@@ -45,7 +45,7 @@
     <div>
       <h3>Agregar Plan de Entrenamiento</h3>
       <input [(ngModel)]="newTrainingPlan.goal" placeholder="Objetivo" />
-      <input [(ngModel)]="newTrainingPlan.days_in_week" placeholder="Días/semana" />
+      <input [(ngModel)]="newTrainingPlan.daysInWeek" placeholder="Días/semana" />
       <button (click)="addTrainingPlan(newTrainingPlan)">Agregar</button>
     </div>
   
@@ -66,18 +66,20 @@
     </div>
   
     <!-- Sección de Rutinas de Ejercicio -->
-    <h2>Rutinas de Ejercicio</h2>
-    <div *ngFor="let routine of exerciseRoutines">
-      <p>{{ routine.muscular_group }} - Día: {{ routine.weekday }}</p>
-      <button (click)="deleteExerciseRoutine(routine.id)">Eliminar</button>
+    <h2>Rutinas de Entrenamiento</h2>
+    <div *ngFor="let routine of trainingRoutines">
+      <p>{{ routine.muscularGroup }} - Día: {{ routine.weekday }}</p>
+      <p>Plan ID: {{ routine.planId }}</p>
+      <button (click)="deleteTrainingRoutine(routine.id)">Eliminar</button>
     </div>
   
     <!-- Formulario para agregar una nueva Rutina de Ejercicio -->
     <div>
-      <h3>Agregar Rutina de Ejercicio</h3>
-      <input [(ngModel)]="newExerciseRoutine.muscular_group" placeholder="Grupo Muscular" />
-      <input [(ngModel)]="newExerciseRoutine.weekday" placeholder="Día de la Semana" />
-      <button (click)="addExerciseRoutine(newExerciseRoutine)">Agregar</button>
+      <h3>Agregar Rutina de Entrenamiento</h3>
+      <input [(ngModel)]="newTrainingRoutine.muscularGroup" placeholder="Grupo Muscular" />
+      <input [(ngModel)]="newTrainingRoutine.weekday" type="number" placeholder="Día de la Semana" />
+      <input [(ngModel)]="newTrainingRoutine.planId" type="number" placeholder="ID del Plan" />
+      <button (click)="addTrainingRoutine(newTrainingRoutine)">Agregar</button>
     </div>
   
     <!-- Sección de Progreso Histórico -->

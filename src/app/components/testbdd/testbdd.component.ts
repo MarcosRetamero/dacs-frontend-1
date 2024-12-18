@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Trainer, Customer, TrainingPlan, HistoricalProgress, Exercise, ExerciseRoutine } from '../../core/models/bdd.model';
+import { Trainer, Customer, TrainingPlan, HistoricalProgress, Exercise, ExerciseRoutine, TrainingRoutine } from '../../core/models/bdd.model';
 import { TrainerService } from 'src/app/core/services/trainer.service';
 import { CustomerService } from 'src/app/core/services/customer.service';
 import { TrainingPlanService } from 'src/app/core/services/training-plan.service';
 import { HistoricalProgressService } from 'src/app/core/services/historical-progress.service';
 import { ExerciseService } from 'src/app/core/services/excercise.service';
 import { ExerciseRoutineService } from 'src/app/core/services/excercise-routine.service';
+import { TrainingRoutineService } from '../../core/services/training-routine.service';
 
 @Component({
   selector: 'app-testbdd',
@@ -18,13 +19,13 @@ export class TestBddComponent implements OnInit {
   trainingPlans: TrainingPlan[] = [];
   historicalProgress: HistoricalProgress[] = [];
   exercises: Exercise[] = [];
-  exerciseRoutines: ExerciseRoutine[] = [];
+  trainingRoutines: TrainingRoutine[] = [];
 
   newTrainer: Trainer = {} as Trainer;
   newCustomer: Customer = {} as Customer;
   newTrainingPlan: TrainingPlan = {} as TrainingPlan;
   newExercise: Exercise = {} as Exercise;
-  newExerciseRoutine: ExerciseRoutine = {} as ExerciseRoutine;
+  newTrainingRoutine: TrainingRoutine = {} as TrainingRoutine;
 
   constructor(
     private trainerService: TrainerService,
@@ -32,7 +33,7 @@ export class TestBddComponent implements OnInit {
     private trainingPlanService: TrainingPlanService,
     private historicalProgressService: HistoricalProgressService,
     private exerciseService: ExerciseService,
-    private exerciseRoutineService: ExerciseRoutineService
+    private trainingRoutineService: TrainingRoutineService
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +41,7 @@ export class TestBddComponent implements OnInit {
     this.getCustomers();
     this.getTrainingPlans();
     this.getExercises();
-    this.getExerciseRoutines();
+    this.getTrainingRoutines();
     this.getHistoricalProgress();
   }
 
@@ -224,38 +225,36 @@ export class TestBddComponent implements OnInit {
     );
   }
 
-  // Métodos para las rutinas de ejercicios
-  getExerciseRoutines(): void {
-    this.exerciseRoutineService.getExerciseRoutines().subscribe(
-      (response: ExerciseRoutine[]) => {
-        this.exerciseRoutines = response;
+  // Métodos para las rutinas de entrenamiento
+  getTrainingRoutines(): void {
+    this.trainingRoutineService.getTrainingRoutines().subscribe(
+      (response: TrainingRoutine[]) => {
+        this.trainingRoutines = response;
       },
       (error: any) => {
-        console.error('Error al obtener rutinas de ejercicios', error);
+        console.error('Error al obtener rutinas de entrenamiento', error);
       }
     );
   }
 
-  addExerciseRoutine(newExerciseRoutine: ExerciseRoutine): void {
-    this.exerciseRoutineService.addExerciseRoutine(newExerciseRoutine).subscribe(
-      (response: ExerciseRoutine) => {
-        console.log('Rutina de ejercicio agregada:', response);
-        this.exerciseRoutines.push(response);
+  addTrainingRoutine(newTrainingRoutine: TrainingRoutine): void {
+    this.trainingRoutineService.addTrainingRoutine(newTrainingRoutine).subscribe(
+      (response: TrainingRoutine) => {
+        this.trainingRoutines.push(response);
       },
       (error: any) => {
-        console.error('Error al agregar rutina de ejercicio', error);
+        console.error('Error al agregar rutina de entrenamiento', error);
       }
     );
   }
 
-  deleteExerciseRoutine(id: number): void {
-    this.exerciseRoutineService.deleteExerciseRoutine(id).subscribe(
+  deleteTrainingRoutine(id: number): void {
+    this.trainingRoutineService.deleteTrainingRoutine(id).subscribe(
       (response: any) => {
-        console.log('Rutina de ejercicio eliminada:', response);
-        this.exerciseRoutines = this.exerciseRoutines.filter(routine => routine.id !== id);
+        this.trainingRoutines = this.trainingRoutines.filter(routine => routine.id !== id);
       },
       (error: any) => {
-        console.error('Error al eliminar rutina de ejercicio', error);
+        console.error('Error al eliminar rutina de entrenamiento', error);
       }
     );
   }

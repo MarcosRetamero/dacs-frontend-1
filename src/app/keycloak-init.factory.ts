@@ -1,3 +1,4 @@
+import { KeycloakService } from "keycloak-angular";
 
 function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
   return () =>
@@ -5,8 +6,8 @@ function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
       .init({
         config: {
           url: 'http://localhost:8080/auth', //fonsi aca tenes que poner la url de tu keycloak
-          realm: 'dacs-2024-g1', //fonsi aca tenes que poner el realm de tu keycloak
-          clientId: 'dacs-2024-fe', //fonsi aca tenes que poner el clientId de tu keycloak
+          realm: 'master', //fonsi aca tenes que poner el realm de tu keycloak
+          clientId: 'dacs2023-bff', //fonsi aca tenes que poner el clientId de tu keycloak
         },
         initOptions: {
           onLoad: 'login-required',
