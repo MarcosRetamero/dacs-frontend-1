@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { DashboardService } from '../services/dashboard.service';  // El servicio que creamos
-import { DashboardData } from '../models/dashboard.interface'; // Interfaz de datos
+import { DashboardService } from 'app/core/services/dashboard.service';  // El servicio que creamos
+import { DashboardData } from 'app/models/dashboard.interface'; // Interfaz de datos
 import { KeycloakService } from 'keycloak-angular'; // Servicio de Keycloak
 
 @Component({
@@ -47,12 +47,12 @@ export class DashboardClienteComponent implements OnInit {
   // Función para obtener los datos del dashboard
   private getDashboardData(customerId: string): void {
     this.dashboardService.getDashboardData(customerId).subscribe(
-      (data) => {
+      (data: DashboardData) => {
         console.log('Datos recibidos para el dashboard:', data);
-        this.dashboardData = data;  // Guardamos los datos en el componente
-        this.createChart();  // Creamos el gráfico con los datos
+        this.dashboardData = data;
+        this.createChart();
       },
-      (error) => {
+      (error: any) => {
         console.error('Error al obtener los datos del dashboard:', error);
       }
     );

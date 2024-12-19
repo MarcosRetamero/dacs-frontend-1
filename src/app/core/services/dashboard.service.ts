@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { TokenService } from './token.service';  // Para obtener el token
 import { DashboardData } from '../models/dashboard.interface';  // Interfaz de datos
 
@@ -9,7 +10,7 @@ import { DashboardData } from '../models/dashboard.interface';  // Interfaz de d
   providedIn: 'root'
 })
 export class DashboardService {
-  private baseUrl = 'http://localhost:9001/backend';  // URL del BFF
+  private baseUrl = 'http://localhost:9001/bff/backend';  // URL del BFF
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
@@ -28,7 +29,7 @@ export class DashboardService {
     console.log(`Llamadas a los endpoints para el cliente: ${customerId}`);
 
     return forkJoin([customer$, progress$, routines$]).pipe(
-      map(([customer, progress, routines]) => {
+      map(([customer, progress, routines]: [any, any[], any[]]) => {
         console.log('Datos obtenidos del cliente:', customer);
         console.log('Progreso histórico del cliente:', progress);
         console.log('Rutinas de entrenamiento del cliente:', routines);
@@ -43,11 +44,11 @@ export class DashboardService {
           grasaCorporal: progress[progress.length - 1]?.bodyFatPercentage || 0,
           nombreEntrenador: customer.trainer?.name || 'No asignado',
           especialidad: customer.trainer?.specialty || 'No asignada',
-          planEntrenamiento: routines.map(routine => ({
+          planEntrenamiento: routines.map((routine: any) => ({
             dia: routine.day,
             grupoMuscular: routine.muscleGroup
           })),
-          progresoHistorico: progress.map(p => p.weight)  // Suponiendo que el progreso histórico es un array de pesos
+          progresoHistorico: progress.map((p: any) => p.weight)
         };
 
         console.log('Datos compuestos para el dashboard:', dashboardData);
