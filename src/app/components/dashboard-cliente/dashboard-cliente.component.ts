@@ -1,5 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { DashboardService } from '../services/dashboard.service';  // El servicio que creamos
+import { DashboardData } from '../models/dashboard.interface'; // Interfaz de datos
+import { KeycloakService } from 'keycloak-angular'; // Servicio de Keycloak
 
 @Component({
   selector: 'app-dashboard-cliente',
@@ -10,58 +13,82 @@ export class DashboardClienteComponent implements OnInit {
   @ViewChild('pesoChart') chartCanvas!: ElementRef<HTMLCanvasElement>;
   private chart!: Chart;
 
-  // Datos de usuario
-  nombre: string = 'Juan Pérez';
-  edad: number = 28;
-  objetivoFisico: string = 'Perder peso y ganar masa muscular';
-  pesoInicial: number = 80;
-  pesoActual: number = 75;
-  grasaCorporal: number = 18;
-  nombreEntrenador: string = 'Carlos López';
-  especialidad: string = 'Entrenamiento de fuerza';
+  dashboardData!: DashboardData;  // Los datos del dashboard
 
-  planEntrenamiento = [
-    { dia: 'Lunes', grupoMuscular: 'Pecho y tríceps' },
-    { dia: 'Martes', grupoMuscular: 'Piernas y glúteos' },
-    { dia: 'Miércoles', grupoMuscular: 'Espalda y bíceps' },
-  ];
+  constructor(
+    private dashboardService: DashboardService,
+    private keycloakService: KeycloakService // Inyectamos el servicio de Keycloak
+  ) {}
 
-  constructor() { }
-
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log('Iniciando la obtención de datos para el dashboard');
+    this.getCustomerIdFromKeycloak();
+  }
 
   ngAfterViewInit() {
     this.createChart();
   }
 
-  private createChart() {
-    const ctx = this.chartCanvas.nativeElement;
+  // Función para obtener el customerId desde Keycloak y llamar al BFF
+  private getCustomerIdFromKeycloak(): void {
+    const keycloakInstance = this.keycloakService.getKeycloakInstance();
+    const customerId = keycloakInstance.subject;  // Obtiene el ID del usuario (sub)
 
-    this.chart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-        datasets: [{
-          label: 'Peso (kg)',
-          data: [80, 78, 76, 75, 75],
-          backgroundColor: '#710D07',
-          borderColor: 'var(--primary-color)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: { beginAtZero: true },
-          x: { grid: { display: false } }
-        },
-        plugins: { legend: { display: false } }
-      }
-    });
+    console.log('Customer ID desde Keycloak:', customerId);
+
+    // Llamamos al servicio de Dashboard para obtener los datos del cliente
+    if (customerId) {
+      this.getDashboardData(customerId);
+    } else {
+      console.error('No se pudo obtener el customerId desde Keycloak');
+    }
   }
 
-  agregarPeso() {
-    console.log('Agregando nuevo peso');
+  // Función para obtener los datos del dashboard
+  private getDashboardData(customerId: string): void {
+    this.dashboardService.getDashboardData(customerId).subscribe(
+      (data) => {
+        console.log('Datos recibidos para el dashboard:', data);
+        this.dashboardData = data;  // Guardamos los datos en el componente
+        this.createChart();  // Creamos el gráfico con los datos
+      },
+      (error) => {
+        console.error('Error al obtener los datos del dashboard:', error);
+      }
+    );
+  }
+
+  private createChart() {
+    console.log('Intentando crear el gráfico...');
+    const ctx = this.chartCanvas.nativeElement;
+
+    if (this.dashboardData) {
+      console.log('Datos del dashboard para el gráfico:', this.dashboardData);
+      this.chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+          datasets: [{
+            label: 'Peso (kg)',
+            data: this.dashboardData.progresoHistorico,  // Usamos los datos de peso histórico
+            backgroundColor: '#710D07',
+            borderColor: 'var(--primary-color)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true },
+            x: { grid: { display: false } }
+          },
+          plugins: { legend: { display: false } }
+        }
+      });
+      console.log('Gráfico creado exitosamente');
+    } else {
+      console.log('No se pudo crear el gráfico porque no hay datos');
+    }
   }
 }
