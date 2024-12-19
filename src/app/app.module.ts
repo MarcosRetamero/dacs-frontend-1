@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+
+
 // Keycloak
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './core/keycloak-init.factory';
@@ -45,7 +47,7 @@ import { MatCardModule } from '@angular/material/card';
     PlanEntrenamientoComponent,
     RegistroEntrenadorComponent,
     TestBffComponent,
-    
+
   ],
   imports: [
     BrowserModule,
