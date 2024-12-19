@@ -21,20 +21,39 @@ export class AppComponent implements OnInit {
   constructor(private readonly keycloak: KeycloakService, private apiService: ApiService) {}
 
   public async ngOnInit() {
-    this.isLogueado = await this.keycloak.isLoggedIn();
-    this.role = await this.keycloak.isUserInRole("ROLE-A");
-    this.apiService.getTest().subscribe(resp => this.testResponse = resp);
-    this.apiService.getPing().subscribe(resp => this.apiPing = resp);
-    this.apiService.getConectorPing().subscribe(resp => this.apiConectorPing = resp);
+    try {
+      this.isLogueado = await this.keycloak.isLoggedIn();
+      console.log('Is logged in:', this.isLogueado);
 
-    console.log("role=====>", this.role);
-    if (this.isLogueado && !this.role) {
-      this.keycloak.logout();
-      return;
-    }
+      if (this.isLogueado) {
+        this.perfilUsuario = await this.keycloak.loadUserProfile();
+        console.log('User profile:', this.perfilUsuario);
+        
+        this.role = await this.keycloak.isUserInRole("ROLE-A");
+        console.log('Has ROLE-A:', this.role);
 
-    if (this.isLogueado) {
-      this.perfilUsuario = await this.keycloak.loadUserProfile();
+        // API calls with error handling
+        this.apiService.getTest().subscribe({
+          next: (resp) => this.testResponse = resp,
+          error: (err) => console.error('Error in getTest:', err)
+        });
+        
+        this.apiService.getPing().subscribe({
+          next: (resp) => this.apiPing = resp,
+          error: (err) => console.error('Error in getPing:', err)
+        });
+        
+        this.apiService.getConectorPing().subscribe({
+          next: (resp) => this.apiConectorPing = resp,
+          error: (err) => console.error('Error in getConectorPing:', err)
+        });
+      } else {
+        await this.keycloak.login({
+          redirectUri: window.location.origin
+        });
+      }
+    } catch (error) {
+      console.error('Error in ngOnInit:', error);
     }
   }
 

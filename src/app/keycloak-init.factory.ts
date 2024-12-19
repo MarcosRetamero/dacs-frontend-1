@@ -1,12 +1,13 @@
+import { KeycloakService } from "keycloak-angular";
 
 function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
   return () =>
     keycloak
       .init({
         config: {
-          url: 'http://localhost:8080/auth', //fonsi aca tenes que poner la url de tu keycloak
-          realm: 'dacs-2024-g1', //fonsi aca tenes que poner el realm de tu keycloak
-          clientId: 'dacs-2024-fe', //fonsi aca tenes que poner el clientId de tu keycloak
+          url: 'http://localhost:8080/auth', 
+          realm: 'master', 
+          clientId: 'dacs2023-bff',
         },
         initOptions: {
           onLoad: 'login-required',
@@ -14,7 +15,7 @@ function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
         },
         bearerExcludedUrls: ['/assets'],
       })
-      .then((authenticated) => {
+      .then((authenticated: any) => {
         if (authenticated) {
           // Ensure user roles are an array
           const userRoles = keycloak.getUserRoles();
@@ -26,7 +27,7 @@ function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
         }
         return authenticated;
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.error('Keycloak initialization failed', error);
         return false;
       });
