@@ -5,9 +5,9 @@ function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
     keycloak
       .init({
         config: {
-          url: 'http://localhost:8080/auth', 
+          url: 'http://localhost:8080', 
           realm: 'master', 
-          clientId: 'dacs2023-bff',
+          clientId: 'dacs2023-fe',
         },
         initOptions: {
           onLoad: 'login-required',
