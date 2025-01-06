@@ -23,6 +23,8 @@ import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alum
 import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
 import { TestBffComponent } from './components/testbff/testbff.component';
+import { TestBddComponent } from './components/testbdd/testbdd.component';
+
 
 // Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,7 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { TestBddComponent } from './components/testbdd/testbdd.component';
+
 
 @NgModule({
   declarations: [

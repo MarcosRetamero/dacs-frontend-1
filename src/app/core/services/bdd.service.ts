@@ -9,7 +9,7 @@ import { BddResponse } from '../models/bdd.model';  // Asegúrate de importar el
 })
 export class BddService {
 
-  private apiUrl = 'https://tu-api.com/endpoint';  // Reemplaza con tu endpoint
+  private apiUrl = 'http://localhost:9001/bff/backend/customer';  // Reemplaza con tu endpoint
 
   constructor(private http: HttpClient) { }
 
