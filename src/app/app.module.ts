@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 // Keycloak
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { initializeKeycloak } from './core/keycloak-init.factory';
+import { initializeKeycloak } from './keycloak-init.factory';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
 // Componentes

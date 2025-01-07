@@ -35,7 +35,8 @@ export class AppComponent implements OnInit {
 
       if (this.isLogueado) {
         // Obtener el `sub` de Keycloak
-        this.userId = this.keycloak.getKeycloakInstance().tokenParsed.sub;
+        this.userId = this.keycloak.getKeycloakInstance().tokenParsed?.sub ?? null;
+        //this.userId = this.keycloak.getKeycloakInstance().tokenParsed.sub;
         console.log('User ID (sub) from Keycloak:', this.userId);
 
         this.perfilUsuario = await this.keycloak.loadUserProfile();
@@ -78,19 +79,19 @@ export class AppComponent implements OnInit {
   }
 
   private registrarUsuarioSiEsNecesario() {
-    if (this.userId) {
+    if (this.userId) { // Verificamos que userId no sea null
       // Verificar si el usuario es un entrenador
       this.trainerService.getTrainerByUserId(this.userId).subscribe({
         next: (trainer) => {
           if (!trainer) {
             console.log('User is not a trainer, checking if user is a customer');
             // Si no es entrenador, verificar si es un cliente
-            this.customerService.getCustomerByUserId(this.userId).subscribe({
+            this.customerService.getCustomerByUserId(this.userId!).subscribe({
               next: (customer) => {
                 if (!customer) {
                   console.log('User is neither a trainer nor a customer');
                   // Si el usuario no es ni entrenador ni cliente, registrar al usuario
-                  const customerData = { user_id: this.userId, name: this.perfilUsuario?.firstName };
+                  const customerData = { user_id: this.userId!, name: this.perfilUsuario?.firstName };
                   this.customerService.addCustomer(customerData).subscribe();
                 }
               },
@@ -102,6 +103,7 @@ export class AppComponent implements OnInit {
       });
     }
   }
+  
 
   public iniciarSesion() {
     this.keycloak.login();

@@ -1,6 +1,6 @@
 import { KeycloakService } from "keycloak-angular";
 
-function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
+export function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
   return () =>
     keycloak
       .init({
