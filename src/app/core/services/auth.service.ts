@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
 
   // Verificar si el usuario está autenticado
   isAuthenticated(): Observable<boolean> {
-    return of(this.keycloakService.isLoggedIn());
+    return from(this.keycloakService.isLoggedIn());
   }
 
   // Obtener el token de acceso de Keycloak
@@ -24,17 +25,14 @@ export class AuthService {
       return of(token);  // Devuelve el token almacenado en localStorage
     } else {
       return new Observable(observer => {
-        this.keycloakService
-          .getKeycloakInstance()
-          .token
-          .then(token => {
-            this.setStoredToken(token);  // Almacena el token en localStorage
-            observer.next(token);
-            observer.complete();
-          })
-          .catch(err => {
-            observer.error(err);
-          });
+        const token = this.keycloakService.getKeycloakInstance().token;
+        if (token) {
+          this.setStoredToken(token); // Almacena el token en localStorage
+          observer.next(token);
+          observer.complete();
+        } else {
+          observer.error('Token is undefined');
+        }
       });
     }
   }

@@ -67,16 +67,16 @@ import { MatCardModule } from '@angular/material/card';
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       deps: [KeycloakService],
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }    
   ],
   bootstrap: [AppComponent],
 })
