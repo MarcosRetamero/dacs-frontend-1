@@ -1,7 +1,8 @@
+<body>
 <div class="container">
-  <h1>Crear Nueva Rutina</h1>
+  <h1><strong>Rutina</strong></h1>
 
-  <form [formGroup]="routineForm" (ngSubmit)="saveRoutine()">
+  <form [formGroup]="routineForm" (ngSubmit)="saveRoutine()" class="routine-form">
     <div class="form-group">
       <label for="routineName">Nombre de la Rutina</label>
       <input id="routineName" formControlName="routineName" type="text" placeholder="Ej: Rutina de Fuerza" />
@@ -21,10 +22,8 @@
       </select>
     </div>
 
-    <button type="button" (click)="showExerciseForm = true" [disabled]="showExerciseForm">Agregar Ejercicio</button>
-
     <div *ngIf="showExerciseForm" class="exercise-form">
-      <h3>Añadir Nuevo Ejercicio</h3>
+      <h3><strong>Añadir Nuevo Ejercicio</strong></h3>
 
       <div class="form-group">
         <label for="exercise">Seleccionar Ejercicio</label>
@@ -44,9 +43,11 @@
           <label for="reps">Repeticiones</label>
           <input id="reps" type="number" [(ngModel)]="customReps" min="1" />
         </div>
-
-        <button type="button" (click)="addExerciseToRoutine()">Añadir</button>
-        <button type="button" (click)="resetExerciseForm()">Cancelar</button>
+        <div class="botones-usuario">    
+          <button type="button" (click)="addExerciseToRoutine()">Añadir</button>
+          <button type="button" (click)="resetExerciseForm()">Cancelar</button>
+        </div>
+    
       </div>
     </div>
 
@@ -70,7 +71,11 @@
         </tr>
       </tbody>
     </table>
+    <div class="botones-usuario">    
+      <button type="button" (click)="showExerciseForm = true" [disabled]="showExerciseForm">Agregar Ejercicio</button>
+      <button type="submit" [disabled]="routine.exercises.length === 0">Guardar Rutina</button>
+    </div>
 
-    <button type="submit" [disabled]="routine.exercises.length === 0">Guardar Rutina</button>
   </form>
 </div>
+</body>

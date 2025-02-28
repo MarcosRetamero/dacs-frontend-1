@@ -9,19 +9,8 @@
         <p><strong>Entrenador:</strong> {{ entrenador }}</p>        
       </div>
       <div class="botones-usuario">
-          <button class="btn-cambiar-objetivo" (click)="cambiarObjetivo()">Cambiar objetivo</button>
-      </div>
-    </div>
-
-    <div class="entrenador-info">
-      <h3>Trainer</h3>
-      <h3>{{ nombreEntrenador }}</h3>
-      <div class="entrenador-img">
-        <img src="assets/images/image.png" alt="Foto de {{ entrenador }}">
-      </div>
-      <div class="entrenador-details">
-        <p><strong>Especialidad:</strong> {{ especialidad }}</p>
-        <p><strong>Experiencia:</strong> {{ experiencia }}</p>
+        <button class="btn-cambiar-objetivo" (click)="editarDatos()">Editar datos personales</button>
+        <button class="btn-cambiar-objetivo" (click)="cambiarObjetivo()">Cambiar objetivo</button>
       </div>
     </div>
 

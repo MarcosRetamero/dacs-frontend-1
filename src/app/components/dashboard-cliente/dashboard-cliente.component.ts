@@ -106,4 +106,8 @@ export class DashboardClienteComponent implements OnInit {
   agregarPeso() {
     console.log('Agregando nuevo peso');
   }
+
+  editarDatos() {
+    console.log('Editando perfil');
+  }
 }
