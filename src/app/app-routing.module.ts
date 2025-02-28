@@ -10,6 +10,8 @@ import { RegistroUserComponent } from './components/registro-user/registro-user.
 import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alumno.component';
 import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
+import { CreateRoutineComponent } from './components/agregar-ejercicios/agregar-ejercicios.component';
+
 const routes: Routes = [
 //  { path: '', canActivate: [AuthGuard]},
 //{ path: '**', redirectTo: '' },
@@ -19,6 +21,7 @@ const routes: Routes = [
 { path: 'crear-plan', component: CrearPlanComponent }, // ruta para el dashboard
 { path: 'student-details', component: StudentDetailsComponent }, // ruta para el dashboard
 { path: 'registro-user', component: RegistroUserComponent }, // ruta para el dashboard
+{ path: 'agregar-ejercicios', component: CreateRoutineComponent },
 { path: 'agregar-alumno', component: AgregarAlumnoComponent }, // ruta para el dashboard
 { path: 'plan-entrenamiento', component: PlanEntrenamientoComponent }, // ruta para el dashboard
 { path: 'registro-entrenador', component: RegistroEntrenadorComponent }, // ruta para el dashboard

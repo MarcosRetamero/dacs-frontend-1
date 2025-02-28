@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-free": "^6.7.1",
     "@types/chart.js": "^2.9.41",
     "chart.js": "^4.3.0",
+    "dacs": "file:",
     "ng2-charts": "^4.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

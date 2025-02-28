@@ -15,6 +15,7 @@ import { CrearPlanComponent } from './components/crear-plan/crear-plan.component
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { RegistroUserComponent } from './components/registro-user/registro-user.component';
 import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alumno.component';
+import { CreateRoutineComponent } from './components/agregar-ejercicios/agregar-ejercicios.component';
 
 // Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,8 +38,10 @@ import { RegistroEntrenadorComponent } from './components/registro-entrenador/re
     RegistroUserComponent,
     AgregarAlumnoComponent,
     PlanEntrenamientoComponent,
-    RegistroEntrenadorComponent
-    
+    RegistroEntrenadorComponent,
+    CreateRoutineComponent
+
+
   ],
   imports: [
     BrowserModule,
