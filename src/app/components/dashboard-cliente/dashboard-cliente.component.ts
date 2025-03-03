@@ -18,12 +18,7 @@ export class DashboardClienteComponent implements OnInit {
   pesoInicial: number = 80;
   pesoActual: number = 75;
   grasaCorporal: number = 18;
-  entrenador: string = 'Carlos López';
-  gimnasio: string = 'Gimnasio Elite';
 
-  nombreEntrenador: string = 'Gago';
-  especialidad: string = 'Entrenamiento de fuerza';
-  experiencia: string = '5 años de experiencia';
   planEntrenamiento = [
     {
       dia: 'Lunes',
@@ -44,7 +39,7 @@ export class DashboardClienteComponent implements OnInit {
       ]
     }
   ];
-  
+
   editandoObjetivo: boolean = false;
   objetivoTemporal: string = '';
   editandoPeso: boolean = false;
@@ -60,7 +55,7 @@ export class DashboardClienteComponent implements OnInit {
 
   private createChart() {
     const ctx = this.chartCanvas.nativeElement;
-    
+
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
