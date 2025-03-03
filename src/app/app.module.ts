@@ -12,7 +12,6 @@ import { DashboardClienteComponent } from './components/dashboard-cliente/dashbo
 import { LayoutComponent } from './components/layout/layout.component';
 import { PanelEntrenadorComponent } from './components/panel-entrenador/panel-entrenador.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
-import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { RegistroUserComponent } from './components/registro-user/registro-user.component';
 import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alumno.component';
 import { CreateRoutineComponent } from './components/agregar-ejercicios/agregar-ejercicios.component';
@@ -25,7 +24,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { PlanEntrenamientoComponent } from './components/plan-entrenamiento/plan-entrenamiento.component';
 import { MatCardModule } from '@angular/material/card';
-import { RegistroEntrenadorComponent } from './components/registro-entrenador/registro-entrenador.component';
 
 @NgModule({
   declarations: [
@@ -34,14 +32,10 @@ import { RegistroEntrenadorComponent } from './components/registro-entrenador/re
     LayoutComponent,
     PanelEntrenadorComponent,
     CrearPlanComponent,
-    StudentDetailsComponent,
     RegistroUserComponent,
     AgregarAlumnoComponent,
     PlanEntrenamientoComponent,
-    RegistroEntrenadorComponent,
     CreateRoutineComponent
-
-
   ],
   imports: [
     BrowserModule,
