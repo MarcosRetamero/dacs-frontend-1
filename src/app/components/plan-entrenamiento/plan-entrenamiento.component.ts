@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 
 type Exercise = {
   name: string;
+  description: string;
   sets: number;
   reps: number;
   imageUrl?: string; // URL de la imagen proporcionada por la API
 };
 
-type TrainingDay = {
+type Routine = {
   day: string;
-  muscleGroups: string;
+  routineName: string;
   exercises: Exercise[];
 };
 
@@ -18,6 +19,8 @@ type TrainingDay = {
   templateUrl: './plan-entrenamiento.component.html',
   styleUrls: ['./plan-entrenamiento.component.css']
 })
+
+/*
 export class PlanEntrenamientoComponent {
   trainingPlan: TrainingDay[] = [
     {
@@ -39,4 +42,22 @@ export class PlanEntrenamientoComponent {
       ],
     },
   ];
+}
+*/
+
+
+export class PlanEntrenamientoComponent {
+  Routine: Routine = {
+    day: "Lunes",
+    routineName: "Cardio",
+    exercises: [
+
+        { name: 'Sentadillas', description:"Descripcion del ejercicio", sets: 4, reps: 12 },
+        { name: 'Peso muerto',description:"Descripcion del ejercicio", sets: 3, reps: 10 },
+        { name: 'Zancadas',description:"Descripcion del ejercicio", sets: 3, reps: 12 },
+      ],
+
+
+
+  }
 }
