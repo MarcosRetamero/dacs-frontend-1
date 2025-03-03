@@ -130,6 +130,8 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  display: flex;  
+  flex-direction: column;
 }
 
 .dia h4 {
@@ -248,4 +250,91 @@ footer.footer {
   padding: 1rem;
   margin-top: auto;
   font-family: 'Roboto', sans-serif; /* Usamos la fuente Roboto desde el CSS global */
+}
+
+.objetivo-container {
+  margin: 0;
+
+}
+
+.input-objetivo {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+}
+
+.btn-editar, .btn-guardar, .btn-cancelar {
+  padding: 6px 12px;
+  margin-left: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-guardar {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
+
+.btn-cancelar {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.btn-editar {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+}
+
+.plan-entrenamiento button {
+  background-color: var(--grey);
+  color: var(--white);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3sease, transform 0.2sease;
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+.input-peso {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100px;
+}
+
+.peso-actual-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.peso-actual-container p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.peso-actual-container .input-peso {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100px;
+}
+
+.peso-actual-container .btn-editar,
+.peso-actual-container .btn-guardar,
+.peso-actual-container .btn-cancelar {
+    margin: 0 5px;
 }

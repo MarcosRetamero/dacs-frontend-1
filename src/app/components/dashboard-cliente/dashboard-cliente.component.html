@@ -3,8 +3,27 @@
     <div class="datos-usuario">
       <div class="info-usuario">
         <h2>{{ nombre }}, {{ edad }} años</h2>
-        <p><strong>Objetivo físico:</strong> {{ objetivoFisico }}</p>
-        <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg - <strong>Peso actual:</strong> {{ pesoActual }} kg</p>
+        <p><strong>Objetivo Físico:</strong></p>
+        <div class="objetivo-container">
+          <div *ngIf="!editandoObjetivo">
+            <p>{{objetivoFisico}}</p>
+          </div>
+          <div *ngIf="editandoObjetivo">
+            <input type="text" [(ngModel)]="objetivoTemporal" class="input-objetivo">
+            <button (click)="guardarObjetivo()" class="btn-guardar">Guardar</button>
+            <button (click)="cancelarEdicion()" class="btn-cancelar">Cancelar</button>
+          </div>
+        </div>
+        <div class="peso-container">
+          <div *ngIf="!editandoPeso">
+            <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg - <strong>Peso actual:</strong> {{ pesoActual }} kg</p>
+          </div>
+          <div *ngIf="editandoPeso">
+            <input type="number" [(ngModel)]="pesoTemporal" class="input-peso" step="0.1">
+            <button (click)="guardarPeso()" class="btn-guardar">Guardar</button>
+            <button (click)="cancelarEdicionPeso()" class="btn-cancelar">Cancelar</button>
+          </div>
+        </div>
         <p><strong>Índice de grasa corporal:</strong> {{ grasaCorporal }}%</p>
         <p><strong>Entrenador:</strong> {{ entrenador }}</p>        
       </div>
@@ -22,12 +41,14 @@
           <p>{{ dia.grupoMuscular }}</p>
           <ul>
             <li *ngFor="let ejercicio of dia.ejercicios">
-              <p><strong>Ejercicio:</strong> {{ ejercicio.nombre }}</p>
-              <p><strong>Series:</strong> {{ ejercicio.series }}</p>
-              <p><strong>Repeticiones:</strong> {{ ejercicio.repeticiones }}</p>
+              <p>{{ ejercicio.nombre }}</p>
             </li>
           </ul>
+          <button class="btn-editar-rutina" (click)="editarRutina()">Ver</button>
         </div>
+      </div>
+      <div class="botones-usuario">
+        <button class="btn-agregar-rutina" (click)="agregarRutina()">Agregar Rutina</button>
       </div>
     </div>
     
@@ -38,18 +59,28 @@
         <h3>Mi progreso</h3>
         <h3>Evolución del peso</h3>
         
+        <div class="peso-actual-container">
+            <div *ngIf="!editandoPeso">
+                <p><strong>Peso actual:</strong> {{ pesoActual }} kg</p>
+                <button (click)="agregarPeso()" class="btn-editar">
+                    <i class="fas fa-edit"></i> Actualizar Peso
+                </button>
+            </div>
+            <div *ngIf="editandoPeso">
+                <input type="number" [(ngModel)]="pesoTemporal" class="input-peso" step="0.1" placeholder="Nuevo peso">
+                <button (click)="guardarPeso()" class="btn-guardar">Guardar</button>
+                <button (click)="cancelarEdicionPeso()" class="btn-cancelar">Cancelar</button>
+            </div>
+        </div>
+        
         <select class="dropdown">
-          <option value="semana">Por Semana</option>
-          <option value="mes">Por Mes</option>
-          <option value="año">Por Año</option>
+            <option value="semana">Por Semana</option>
+            <option value="mes">Por Mes</option>
+            <option value="año">Por Año</option>
         </select>
         
         <div class="chart-container">
             <canvas #pesoChart></canvas>
-        </div>
-        
-        <div class="botones-usuario">      
-          <button class="btn-cambiar-objetivo" (click)="agregarPeso()">Agregar peso</button>
         </div>
     </div>
   </div>

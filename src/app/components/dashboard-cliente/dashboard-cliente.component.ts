@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-cliente',
@@ -44,10 +45,12 @@ export class DashboardClienteComponent implements OnInit {
     }
   ];
   
-  
-  
+  editandoObjetivo: boolean = false;
+  objetivoTemporal: string = '';
+  editandoPeso: boolean = false;
+  pesoTemporal: number = 0;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void { }
 
@@ -96,7 +99,20 @@ export class DashboardClienteComponent implements OnInit {
   }
 
   cambiarObjetivo() {
-    console.log('Cambiando objetivo físico');
+    this.editandoObjetivo = !this.editandoObjetivo;
+    this.objetivoTemporal = this.objetivoFisico;
+  }
+
+  guardarObjetivo() {
+    if (this.objetivoTemporal.trim() !== '') {
+      this.objetivoFisico = this.objetivoTemporal.trim();
+      this.editandoObjetivo = false;
+    }
+  }
+
+  cancelarEdicion() {
+    this.editandoObjetivo = false;
+    this.objetivoTemporal = '';
   }
 
   verProgreso() {
@@ -104,10 +120,33 @@ export class DashboardClienteComponent implements OnInit {
   }
 
   agregarPeso() {
-    console.log('Agregando nuevo peso');
+    this.editandoPeso = true;
+    this.pesoTemporal = this.pesoActual;
+  }
+
+  guardarPeso() {
+    if (this.pesoTemporal > 0) {
+      this.pesoActual = this.pesoTemporal;
+      this.editandoPeso = false;
+    }
+  }
+
+  cancelarEdicionPeso() {
+    this.editandoPeso = false;
+    this.pesoTemporal = this.pesoActual;
   }
 
   editarDatos() {
-    console.log('Editando perfil');
+    this.router.navigate(['/registro-user']);
+  }
+
+  agregarRutina(){
+    this.router.navigate(['/agregar-ejercicios']);
+  }
+
+  editarRutina(){
+    this.router.navigate(['/agregar-ejercicios']);
   }
 }
+
+
