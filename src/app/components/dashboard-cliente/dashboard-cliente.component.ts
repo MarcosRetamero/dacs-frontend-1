@@ -16,8 +16,9 @@ export class DashboardClienteComponent implements OnInit {
   edad: number = 28;
   objetivoFisico: string = 'Perder peso y ganar masa muscular';
   pesoInicial: number = 80;
+  altura: number = 180;
   pesoActual: number = 75;
-  grasaCorporal: number = 18;
+  grasaCorporal: number = Math.trunc(this.pesoActual/Math.pow((this.altura/100),2)); // Fórmula: peso (kg) / [estatura (m)]^2
 
   planEntrenamiento = [
     {
@@ -139,8 +140,8 @@ export class DashboardClienteComponent implements OnInit {
     this.router.navigate(['/agregar-ejercicios']);
   }
 
-  editarRutina(){
-    this.router.navigate(['/agregar-ejercicios']);
+  verRutina(){
+    this.router.navigate(['/plan-entrenamiento']);
   }
 }
 
