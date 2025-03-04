@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 type Exercise = {
   name: string;
@@ -20,33 +22,12 @@ type Routine = {
   styleUrls: ['./plan-entrenamiento.component.css']
 })
 
-/*
-export class PlanEntrenamientoComponent {
-  trainingPlan: TrainingDay[] = [
-    {
-      day: 'Lunes',
-      muscleGroups: 'Pecho y tríceps',
-      exercises: [
-        { name: 'Press de banca', sets: 4, reps: 10 },
-        { name: 'Aperturas con mancuernas', sets: 3, reps: 12 },
-        { name: 'Fondos', sets: 3, reps: 15 },
-      ],
-    },
-    {
-      day: 'Martes',
-      muscleGroups: 'Piernas y glúteos',
-      exercises: [
-        { name: 'Sentadillas', sets: 4, reps: 12 },
-        { name: 'Peso muerto', sets: 3, reps: 10 },
-        { name: 'Zancadas', sets: 3, reps: 12 },
-      ],
-    },
-  ];
-}
-*/
 
 
 export class PlanEntrenamientoComponent {
+
+  constructor(private router: Router) { }
+
   Routine: Routine = {
     day: "Lunes",
     routineName: "Cardio",
@@ -56,8 +37,15 @@ export class PlanEntrenamientoComponent {
         { name: 'Peso muerto',description:"Descripcion del ejercicio", sets: 3, reps: 10 },
         { name: 'Zancadas',description:"Descripcion del ejercicio", sets: 3, reps: 12 },
       ],
-
-
-
   }
+
+  Atras() {
+    this.router.navigate(['/dashboard-cliente']);
+  }
+
+  EditarRutina(){
+    this.router.navigate(['/agregar-ejercicios'])
+  }
+
 }
+
