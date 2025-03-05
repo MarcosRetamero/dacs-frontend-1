@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 // Componentes
 import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { PanelEntrenadorComponent } from './components/panel-entrenador/panel-entrenador.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 import { RegistroUserComponent } from './components/registro-user/registro-user.component';
@@ -32,7 +31,6 @@ import { RegistroEntrenadorComponent } from './components/registro-entrenador/re
     AppComponent,
     DashboardClienteComponent,
     LayoutComponent,
-    PanelEntrenadorComponent,
     CrearPlanComponent,
     StudentDetailsComponent,
     RegistroUserComponent,
