@@ -33,9 +33,8 @@ export class CreateRoutineComponent implements OnInit {
   ];
 
   selectedExercise: Exercise | null = null;
-  customSets = 3;
-  customReps = 10;
   showExerciseForm = false;
+  isDayDisabled = false; // Variable para bloquear el selector de día
   routine!: Routine;
 
   constructor(private fb: FormBuilder) {}
@@ -43,7 +42,9 @@ export class CreateRoutineComponent implements OnInit {
   ngOnInit() {
     this.routineForm = this.fb.group({
       routineName: ['Rutina Personalizada', Validators.required],
-      day: ['Lunes', Validators.required]
+      day: ['Lunes', Validators.required],
+      sets: [3, Validators.required],
+      reps: [10, Validators.required],
     });
 
     this.routine = { routineName: 'Rutina Inicial', day: 'Lunes', goal: 100, exercises: [] };
@@ -59,10 +60,11 @@ export class CreateRoutineComponent implements OnInit {
     if (this.selectedExercise) {
       this.routine.exercises.push({
         ...this.selectedExercise,
-        sets: this.customSets,
-        reps: this.customReps
+        sets: this.routineForm.get('sets')?.value,
+        reps: this.routineForm.get('reps')?.value
       });
       this.resetExerciseForm();
+      this.showExerciseForm = true; // Aseguramos que se mantenga oculto el selector
     }
   }
 
@@ -72,16 +74,24 @@ export class CreateRoutineComponent implements OnInit {
 
   saveRoutine() {
     if (this.routineForm.valid && this.routine.exercises.length > 0) {
-      console.log('Rutina guardada:', this.routine);
+      console.log('¡Rutina guardada con éxito!');
+      console.log('Detalles de la rutina:', this.routine);
       this.resetRoutineForm();
+      this.showExerciseForm = false; // Esto hará que el selector de día vuelva a estar visible
+      this.isDayDisabled = false;    // Por si acaso también reseteamos esta bandera
+    } else {
+      console.log('No se pudo guardar la rutina. Asegúrate de completar todos los campos.');
     }
   }
 
   resetExerciseForm() {
     this.selectedExercise = null;
-    this.customSets = 3;
-    this.customReps = 10;
+    this.routineForm.patchValue({
+      sets: 3,
+      reps: 10
+    });
     this.showExerciseForm = false;
+    this.isDayDisabled = true; // Bloqueamos el selector de día cuando se agrega un ejercicio
   }
 
   resetRoutineForm() {
@@ -90,5 +100,11 @@ export class CreateRoutineComponent implements OnInit {
       day: 'Lunes'
     });
     this.routine = { routineName: 'Rutina Inicial', day: 'Lunes', goal: 100, exercises: [] };
+    this.isDayDisabled = false; // Desbloqueamos el selector de día al restablecer la rutina
+  }
+
+  showExerciseFormHandler() {
+    this.showExerciseForm = true;
+    this.isDayDisabled = true;  // Bloqueamos el selector de día al mostrar el formulario
   }
 }

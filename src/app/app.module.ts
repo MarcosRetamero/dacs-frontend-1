@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 // Componentes
 import { DashboardClienteComponent } from './components/dashboard-cliente/dashboard-cliente.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { PanelEntrenadorComponent } from './components/panel-entrenador/panel-entrenador.component';
 import { CrearPlanComponent } from './components/crear-plan/crear-plan.component';
 import { RegistroUserComponent } from './components/registro-user/registro-user.component';
 import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alumno.component';
@@ -30,7 +29,6 @@ import { MatCardModule } from '@angular/material/card';
     AppComponent,
     DashboardClienteComponent,
     LayoutComponent,
-    PanelEntrenadorComponent,
     CrearPlanComponent,
     RegistroUserComponent,
     AgregarAlumnoComponent,
