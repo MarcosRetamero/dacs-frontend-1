@@ -40,6 +40,8 @@ export class CreateRoutineComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    console.log('History state en agregar-ejercicios:', history.state);
+
     this.routineForm = this.fb.group({
       routineName: ['Rutina Personalizada', Validators.required],
       day: ['Lunes', Validators.required],
@@ -48,6 +50,28 @@ export class CreateRoutineComponent implements OnInit {
     });
 
     this.routine = { routineName: 'Rutina Inicial', day: 'Lunes', goal: 100, exercises: [] };
+
+    if (history.state?.datosEjercicios) {
+      console.log('Datos recibidos en agregar-ejercicios:');
+      console.log('- Día:', history.state.datosEjercicios.dia);
+      console.log('- Ejercicios:', history.state.datosEjercicios.ejercicios);
+
+      this.routine.day = history.state.datosEjercicios.dia;
+      this.routine.exercises = history.state.datosEjercicios.ejercicios.map((ejercicio: any) => ({
+        id: Math.random(), // Generamos un ID temporal
+        name: ejercicio.name,
+        description: ejercicio.description,
+        sets: ejercicio.sets,
+        reps: ejercicio.reps,
+        image: '' // Campo requerido por la interfaz
+      }));
+
+      this.routineForm.patchValue({
+        day: history.state.datosEjercicios.dia
+      });
+    } else {
+      console.log('No se recibieron datos en agregar-ejercicios');
+    }
   }
 
   selectExercise(event: Event) {
@@ -58,13 +82,23 @@ export class CreateRoutineComponent implements OnInit {
 
   addExerciseToRoutine() {
     if (this.selectedExercise) {
-      this.routine.exercises.push({
-        ...this.selectedExercise,
-        sets: this.routineForm.get('sets')?.value,
-        reps: this.routineForm.get('reps')?.value
-      });
+      // Si el ejercicio ya existe, actualizarlo
+      const index = this.routine.exercises.findIndex(e => e.id === this.selectedExercise?.id);
+      if (index !== -1) {
+        this.routine.exercises[index] = {
+          ...this.selectedExercise,
+          sets: this.routineForm.get('sets')?.value,
+          reps: this.routineForm.get('reps')?.value
+        };
+      } else {
+        // Si es nuevo, agregarlo
+        this.routine.exercises.push({
+          ...this.selectedExercise,
+          sets: this.routineForm.get('sets')?.value,
+          reps: this.routineForm.get('reps')?.value
+        });
+      }
       this.resetExerciseForm();
-      this.showExerciseForm = true; // Aseguramos que se mantenga oculto el selector
     }
   }
 
@@ -106,5 +140,15 @@ export class CreateRoutineComponent implements OnInit {
   showExerciseFormHandler() {
     this.showExerciseForm = true;
     this.isDayDisabled = true;  // Bloqueamos el selector de día al mostrar el formulario
+  }
+
+  // Agregar método para editar ejercicio
+  editExercise(exercise: Exercise) {
+    this.selectedExercise = exercise;
+    this.showExerciseForm = true;
+    this.routineForm.patchValue({
+      sets: exercise.sets,
+      reps: exercise.reps
+    });
   }
 }

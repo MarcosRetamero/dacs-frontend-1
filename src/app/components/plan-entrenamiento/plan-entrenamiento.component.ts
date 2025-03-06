@@ -42,8 +42,27 @@ export class PlanEntrenamientoComponent implements OnInit {
     this.router.navigate(['/dashboard-cliente']);
   }
 
-  EditarRutina(){
-    this.router.navigate(['/agregar-ejercicios'])
+  EditarRutina() {
+    // Creamos el objeto con los datos a enviar
+    const datosEjercicios = {
+      dia: this.Routine.day,
+      ejercicios: this.Routine.exercises.map(exercise => ({
+        name: exercise.name,
+        description: exercise.description,
+        sets: exercise.sets,
+        reps: exercise.reps
+      }))
+    };
+
+    // Log de los datos que vamos a enviar
+    console.log('Datos a enviar a agregar-ejercicios:');
+    console.log('- Día:', datosEjercicios.dia);
+    console.log('- Ejercicios:', datosEjercicios.ejercicios);
+
+    // Navegamos a agregar-ejercicios con los datos
+    this.router.navigate(['/agregar-ejercicios'], {
+      state: { datosEjercicios }
+    });
   }
 
   ngOnInit() {

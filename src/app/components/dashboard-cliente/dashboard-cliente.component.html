@@ -16,7 +16,7 @@
         </div>
         <div class="peso-container">
           <div *ngIf="!editandoPeso">
-            <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg - <strong>Peso actual:</strong> {{ pesoActual }} kg</p>
+            <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg <strong>Peso actual:</strong> {{ pesoActual }} kg</p>
           </div>
           <div *ngIf="editandoPeso">
             <input type="number" [(ngModel)]="pesoTemporal" class="input-peso" step="0.1">
@@ -25,7 +25,7 @@
           </div>
         </div>
         <p><strong>Índice de grasa corporal:</strong> {{ grasaCorporal }}%</p>
-        <p><strong>Entrenador:</strong> {{ entrenador }}</p>        
+        
       </div>
       <div class="botones-usuario">
         <button class="btn-cambiar-objetivo" (click)="editarDatos()">Editar datos personales</button>

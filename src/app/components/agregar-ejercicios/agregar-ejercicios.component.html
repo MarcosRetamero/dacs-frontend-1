@@ -66,6 +66,7 @@
             <td>{{ exercise.sets }}</td>
             <td>{{ exercise.reps }}</td>
             <td>
+              <button type="button" (click)="editExercise(exercise)">Editar</button>
               <button type="button" (click)="removeExercise(exercise.id)">Eliminar</button>
             </td>
           </tr>

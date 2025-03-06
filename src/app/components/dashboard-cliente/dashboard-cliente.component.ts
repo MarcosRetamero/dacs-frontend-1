@@ -12,12 +12,12 @@ export class DashboardClienteComponent implements OnInit {
   private chart!: Chart;
 
   // Datos de usuario
-  nombre: string = 'Juan Pérez';
-  edad: number = 28;
-  objetivoFisico: string = 'Perder peso y ganar masa muscular';
-  pesoInicial: number = 80;
-  altura: number = 180;
-  pesoActual: number = 75;
+  nombre: string = '';
+  edad: number = 0;
+  objetivoFisico: string = '';
+  pesoInicial: number = 0;
+  altura: number = 0;
+  pesoActual: number = 0;
   grasaCorporal: number = Math.trunc(this.pesoActual/Math.pow((this.altura/100),2)); // Fórmula: peso (kg) / [estatura (m)]^2
 
   planEntrenamiento = [
