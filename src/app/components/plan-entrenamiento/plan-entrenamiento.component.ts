@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 type Exercise = {
   name: string;
   description: string;
@@ -19,26 +18,47 @@ type Routine = {
 @Component({
   selector: 'app-plan-entrenamiento',
   templateUrl: './plan-entrenamiento.component.html',
-  styleUrls: ['./plan-entrenamiento.component.css']
+  styleUrls: ['./plan-entrenamiento.component.css'],
 })
-
-
-
 export class PlanEntrenamientoComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   Routine: Routine = {
-    day: "",
-    routineName: "Cardio",
+    day: '',
+    routineName: 'Cardio',
     exercises: [
-      { name: 'Sentadillas', description:"Descripcion del ejercicio", sets: 4, reps: 12 },
-      { name: 'Peso muerto',description:"Descripcion del ejercicio", sets: 3, reps: 10 },
-      { name: 'Zancadas',description:"Descripcion del ejercicio", sets: 3, reps: 12 },
+      {
+        name: 'Sentadillas',
+        description: 'Descripcion del ejercicio',
+        sets: 4,
+        reps: 12,
+        imageUrl:
+          'https://image.tmdb.org/t/p/original/AvNQkQECAOza2WEUDksxexnKujh.jpg',
+      },
+      {
+        name: 'Peso muerto',
+        description: 'Descripcion del ejercicio',
+        sets: 3,
+        reps: 10,
+        imageUrl:
+          'https://image.tmdb.org/t/p/original/AvNQkQECAOza2WEUDksxexnKujh.jpg',
+      },
+      {
+        name: 'Zancadas',
+        description: 'Descripcion del ejercicio',
+        sets: 3,
+        reps: 12,
+        imageUrl:
+          'https://image.tmdb.org/t/p/original/AvNQkQECAOza2WEUDksxexnKujh.jpg',
+      },
     ],
-  }
+  };
 
   Atras() {
+    this.router.navigate(['/dashboard-cliente']);
+  }
+
+  EliminarRutina() {
     this.router.navigate(['/dashboard-cliente']);
   }
 
@@ -46,12 +66,12 @@ export class PlanEntrenamientoComponent implements OnInit {
     // Creamos el objeto con los datos a enviar
     const datosEjercicios = {
       dia: this.Routine.day,
-      ejercicios: this.Routine.exercises.map(exercise => ({
+      ejercicios: this.Routine.exercises.map((exercise) => ({
         name: exercise.name,
         description: exercise.description,
         sets: exercise.sets,
-        reps: exercise.reps
-      }))
+        reps: exercise.reps,
+      })),
     };
 
     // Log de los datos que vamos a enviar
@@ -61,7 +81,7 @@ export class PlanEntrenamientoComponent implements OnInit {
 
     // Navegamos a agregar-ejercicios con los datos
     this.router.navigate(['/agregar-ejercicios'], {
-      state: { datosEjercicios }
+      state: { datosEjercicios },
     });
   }
 
@@ -70,14 +90,15 @@ export class PlanEntrenamientoComponent implements OnInit {
 
     if (history.state?.datosRutina) {
       console.log('Datos recibidos en plan-entrenamiento:');
-      console.log('- Día seleccionado:', history.state.datosRutina.diaSeleccionado);
-      
+      console.log(
+        '- Día seleccionado:',
+        history.state.datosRutina.diaSeleccionado
+      );
+
       this.Routine.day = history.state.datosRutina.diaSeleccionado;
     } else {
       console.log('No se recibieron datos en plan-entrenamiento');
-      this.Routine.day = "Lunes";
+      this.Routine.day = 'Lunes';
     }
   }
-
 }
-

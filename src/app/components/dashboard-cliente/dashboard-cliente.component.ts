@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard-cliente',
   templateUrl: './dashboard-cliente.component.html',
-  styleUrls: ['./dashboard-cliente.component.css']
+  styleUrls: ['./dashboard-cliente.component.css'],
 })
 export class DashboardClienteComponent implements OnInit {
   @ViewChild('pesoChart') chartCanvas!: ElementRef<HTMLCanvasElement>;
@@ -18,7 +18,9 @@ export class DashboardClienteComponent implements OnInit {
   pesoInicial: number = 0;
   altura: number = 0;
   pesoActual: number = 0;
-  grasaCorporal: number = Math.trunc(this.pesoActual/Math.pow((this.altura/100),2)); // Fórmula: peso (kg) / [estatura (m)]^2
+  grasaCorporal: number = Math.trunc(
+    this.pesoActual / Math.pow(this.altura / 100, 2)
+  ); // Fórmula: peso (kg) / [estatura (m)]^2
 
   planEntrenamiento = [
     {
@@ -26,9 +28,14 @@ export class DashboardClienteComponent implements OnInit {
       grupoMuscular: 'Pecho y tríceps',
       ejercicios: [
         { nombre: 'Press de banca', series: 4, repeticiones: 10, descanso: 60 },
-        { nombre: 'Aperturas con mancuernas', series: 3, repeticiones: 12, descanso: 60 },
-        { nombre: 'Fondos', series: 3, repeticiones: 15, descanso: 60 }
-      ]
+        {
+          nombre: 'Aperturas con mancuernas',
+          series: 3,
+          repeticiones: 12,
+          descanso: 60,
+        },
+        { nombre: 'Fondos', series: 3, repeticiones: 15, descanso: 60 },
+      ],
     },
     {
       dia: 'Martes',
@@ -36,9 +43,9 @@ export class DashboardClienteComponent implements OnInit {
       ejercicios: [
         { nombre: 'Sentadillas', series: 4, repeticiones: 12, descanso: 90 },
         { nombre: 'Peso muerto', series: 3, repeticiones: 10, descanso: 90 },
-        { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 }
-      ]
-    }
+        { nombre: 'Zancadas', series: 3, repeticiones: 12, descanso: 90 },
+      ],
+    },
   ];
 
   editandoObjetivo: boolean = false;
@@ -49,7 +56,7 @@ export class DashboardClienteComponent implements OnInit {
   // Agregar la propiedad entrenador
   entrenador: string = 'Sin asignar';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     // Usar history.state directamente
@@ -57,22 +64,29 @@ export class DashboardClienteComponent implements OnInit {
 
     if (history.state?.datosActualizados) {
       // Mostramos los datos recibidos en consola
-      console.log('Datos recibidos en dashboard:', history.state.datosActualizados);
+      console.log(
+        'Datos recibidos en dashboard:',
+        history.state.datosActualizados
+      );
       console.log('Desglose de datos:');
       console.log('- Nombre:', history.state.datosActualizados.nombre);
       console.log('- Edad:', history.state.datosActualizados.edad);
       console.log('- Altura:', history.state.datosActualizados.altura);
       console.log('- Peso Actual:', history.state.datosActualizados.pesoActual);
-      
+
       // Actualizar los datos del usuario
       this.nombre = history.state.datosActualizados.nombre || this.nombre;
       this.edad = history.state.datosActualizados.edad || this.edad;
       this.altura = history.state.datosActualizados.altura || this.altura;
-      this.pesoInicial = history.state.datosActualizados.pesoActual || this.pesoInicial;
-      this.pesoActual = history.state.datosActualizados.pesoActual || this.pesoActual;
-      
+      this.pesoInicial =
+        history.state.datosActualizados.pesoActual || this.pesoInicial;
+      this.pesoActual =
+        history.state.datosActualizados.pesoActual || this.pesoActual;
+
       // Recalcular el IMC con los nuevos datos
-      this.grasaCorporal = Math.trunc(this.pesoActual/Math.pow((this.altura/100),2));
+      this.grasaCorporal = Math.trunc(
+        this.pesoActual / Math.pow(this.altura / 100, 2)
+      );
 
       // Log de los datos actualizados en el componente
       console.log('Datos actualizados en el componente:');
@@ -98,13 +112,15 @@ export class DashboardClienteComponent implements OnInit {
       type: 'bar',
       data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-        datasets: [{
-          label: 'Peso (kg)',
-          data: [80, 78, 76, 75, 75],
-          backgroundColor: '#710D07',
-          borderColor: 'var(--primary-color)',
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            label: 'Peso (kg)',
+            data: [80, 78, 76, 75, 75],
+            backgroundColor: '#710D07',
+            borderColor: 'var(--primary-color)',
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         responsive: true,
@@ -113,21 +129,21 @@ export class DashboardClienteComponent implements OnInit {
           y: {
             beginAtZero: true,
             grid: {
-              color: 'rgba(0, 0, 0, 0.1)'
-            }
+              color: 'rgba(0, 0, 0, 0.1)',
+            },
           },
           x: {
             grid: {
-              display: false
-            }
-          }
+              display: false,
+            },
+          },
         },
         plugins: {
           legend: {
-            display: false
-          }
-        }
-      }
+            display: false,
+          },
+        },
+      },
     });
   }
 
@@ -174,20 +190,20 @@ export class DashboardClienteComponent implements OnInit {
       nombre: this.nombre,
       edad: this.edad,
       altura: this.altura,
-      pesoActual: this.pesoActual
+      pesoActual: this.pesoActual,
     };
-    
+
     // Navegamos a la página de registro con los datos
-    this.router.navigate(['/registro-user'], { 
-      state: { datos: datosUsuario } 
+    this.router.navigate(['/registro-user'], {
+      state: { datos: datosUsuario },
     });
   }
 
-  agregarRutina(){
+  agregarRutina() {
     this.router.navigate(['/agregar-ejercicios']);
   }
 
-  verRutina(){
+  verRutina() {
     this.router.navigate(['/plan-entrenamiento']);
   }
 
@@ -199,16 +215,14 @@ export class DashboardClienteComponent implements OnInit {
 
     const datosRutina = {
       nombreUsuario: this.nombre,
-      diaSeleccionado: dia.dia
+      diaSeleccionado: dia.dia,
     };
 
     console.log('Objeto completo a enviar:', datosRutina);
 
     // Navegamos a plan-entrenamiento con los datos
     this.router.navigate(['/plan-entrenamiento'], {
-      state: { datosRutina }
+      state: { datosRutina },
     });
   }
 }
-
-
