@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -24,19 +24,18 @@ type Routine = {
 
 
 
-export class PlanEntrenamientoComponent {
+export class PlanEntrenamientoComponent implements OnInit {
 
   constructor(private router: Router) { }
 
   Routine: Routine = {
-    day: "Lunes",
+    day: "",
     routineName: "Cardio",
     exercises: [
-
-        { name: 'Sentadillas', description:"Descripcion del ejercicio", sets: 4, reps: 12 },
-        { name: 'Peso muerto',description:"Descripcion del ejercicio", sets: 3, reps: 10 },
-        { name: 'Zancadas',description:"Descripcion del ejercicio", sets: 3, reps: 12 },
-      ],
+      { name: 'Sentadillas', description:"Descripcion del ejercicio", sets: 4, reps: 12 },
+      { name: 'Peso muerto',description:"Descripcion del ejercicio", sets: 3, reps: 10 },
+      { name: 'Zancadas',description:"Descripcion del ejercicio", sets: 3, reps: 12 },
+    ],
   }
 
   Atras() {
@@ -45,6 +44,20 @@ export class PlanEntrenamientoComponent {
 
   EditarRutina(){
     this.router.navigate(['/agregar-ejercicios'])
+  }
+
+  ngOnInit() {
+    console.log('History state en plan-entrenamiento:', history.state);
+
+    if (history.state?.datosRutina) {
+      console.log('Datos recibidos en plan-entrenamiento:');
+      console.log('- Día seleccionado:', history.state.datosRutina.diaSeleccionado);
+      
+      this.Routine.day = history.state.datosRutina.diaSeleccionado;
+    } else {
+      console.log('No se recibieron datos en plan-entrenamiento');
+      this.Routine.day = "Lunes";
+    }
   }
 
 }

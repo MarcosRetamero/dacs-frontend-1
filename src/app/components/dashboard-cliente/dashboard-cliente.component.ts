@@ -191,10 +191,23 @@ export class DashboardClienteComponent implements OnInit {
     this.router.navigate(['/plan-entrenamiento']);
   }
 
-  // Agregar el método editarRutina
-  editarRutina() {
-    console.log('Editando rutina...');
-    // Aquí puedes agregar la lógica para editar la rutina
+  editarRutina(dia: any) {
+    // Log de los datos que vamos a enviar
+    console.log('Datos a enviar a plan-entrenamiento:');
+    console.log('- Nombre del usuario:', this.nombre);
+    console.log('- Día seleccionado:', dia.dia);
+
+    const datosRutina = {
+      nombreUsuario: this.nombre,
+      diaSeleccionado: dia.dia
+    };
+
+    console.log('Objeto completo a enviar:', datosRutina);
+
+    // Navegamos a plan-entrenamiento con los datos
+    this.router.navigate(['/plan-entrenamiento'], {
+      state: { datosRutina }
+    });
   }
 }
 
