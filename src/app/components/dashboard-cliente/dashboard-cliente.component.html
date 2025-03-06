@@ -25,7 +25,7 @@
           </div>
         </div>
         <p><strong>Índice de grasa corporal:</strong> {{ grasaCorporal }}%</p>
-
+        <p><strong>Entrenador:</strong> {{ entrenador }}</p>        
       </div>
       <div class="botones-usuario">
         <button class="btn-cambiar-objetivo" (click)="editarDatos()">Editar datos personales</button>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="plan-entrenamiento">
-      <h3>Rutinas</h3>
+      <h3>Plan de Entrenamiento</h3>
       <div class="dias-container">
         <div class="dia" *ngFor="let dia of planEntrenamiento">
           <h4>{{ dia.dia }}</h4>
@@ -44,21 +44,21 @@
               <p>{{ ejercicio.nombre }}</p>
             </li>
           </ul>
-          <button class="btn-editar-rutina" (click)="verRutina()">Ver</button>
+          <button class="btn-editar-rutina" (click)="editarRutina()">Editar Dia</button>
         </div>
       </div>
       <div class="botones-usuario">
         <button class="btn-agregar-rutina" (click)="agregarRutina()">Agregar Rutina</button>
       </div>
     </div>
+    
 
-
-
+    
 
     <div class="progreso-info">
         <h3>Mi progreso</h3>
         <h3>Evolución del peso</h3>
-
+        
         <div class="peso-actual-container">
             <div *ngIf="!editandoPeso">
                 <p><strong>Peso actual:</strong> {{ pesoActual }} kg</p>
@@ -72,13 +72,13 @@
                 <button (click)="cancelarEdicionPeso()" class="btn-cancelar">Cancelar</button>
             </div>
         </div>
-
+        
         <select class="dropdown">
             <option value="semana">Por Semana</option>
             <option value="mes">Por Mes</option>
             <option value="año">Por Año</option>
         </select>
-
+        
         <div class="chart-container">
             <canvas #pesoChart></canvas>
         </div>

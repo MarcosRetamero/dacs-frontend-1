@@ -46,9 +46,46 @@ export class DashboardClienteComponent implements OnInit {
   editandoPeso: boolean = false;
   pesoTemporal: number = 0;
 
+  // Agregar la propiedad entrenador
+  entrenador: string = 'Sin asignar';
+
   constructor(private router: Router) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // Usar history.state directamente
+    console.log('History state completo:', history.state);
+
+    if (history.state?.datosActualizados) {
+      // Mostramos los datos recibidos en consola
+      console.log('Datos recibidos en dashboard:', history.state.datosActualizados);
+      console.log('Desglose de datos:');
+      console.log('- Nombre:', history.state.datosActualizados.nombre);
+      console.log('- Edad:', history.state.datosActualizados.edad);
+      console.log('- Altura:', history.state.datosActualizados.altura);
+      console.log('- Peso Actual:', history.state.datosActualizados.pesoActual);
+      
+      // Actualizar los datos del usuario
+      this.nombre = history.state.datosActualizados.nombre || this.nombre;
+      this.edad = history.state.datosActualizados.edad || this.edad;
+      this.altura = history.state.datosActualizados.altura || this.altura;
+      this.pesoInicial = history.state.datosActualizados.pesoActual || this.pesoInicial;
+      this.pesoActual = history.state.datosActualizados.pesoActual || this.pesoActual;
+      
+      // Recalcular el IMC con los nuevos datos
+      this.grasaCorporal = Math.trunc(this.pesoActual/Math.pow((this.altura/100),2));
+
+      // Log de los datos actualizados en el componente
+      console.log('Datos actualizados en el componente:');
+      console.log('- Nombre:', this.nombre);
+      console.log('- Edad:', this.edad);
+      console.log('- Altura:', this.altura);
+      console.log('- Peso Inicial:', this.pesoInicial);
+      console.log('- Peso Actual:', this.pesoActual);
+      console.log('- IMC:', this.grasaCorporal);
+    } else {
+      console.log('No se recibieron datos actualizados');
+    }
+  }
 
   ngAfterViewInit() {
     this.createChart();
@@ -133,7 +170,17 @@ export class DashboardClienteComponent implements OnInit {
   }
 
   editarDatos() {
-    this.router.navigate(['/registro-user']);
+    const datosUsuario = {
+      nombre: this.nombre,
+      edad: this.edad,
+      altura: this.altura,
+      pesoActual: this.pesoActual
+    };
+    
+    // Navegamos a la página de registro con los datos
+    this.router.navigate(['/registro-user'], { 
+      state: { datos: datosUsuario } 
+    });
   }
 
   agregarRutina(){
@@ -142,6 +189,12 @@ export class DashboardClienteComponent implements OnInit {
 
   verRutina(){
     this.router.navigate(['/plan-entrenamiento']);
+  }
+
+  // Agregar el método editarRutina
+  editarRutina() {
+    console.log('Editando rutina...');
+    // Aquí puedes agregar la lógica para editar la rutina
   }
 }
 

@@ -12,6 +12,7 @@
           class="form-control"
           formControlName="nombre"
           placeholder="Tu nombre"
+          [class.disabled-input]="vieneDeDashboard"
         />
         <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched">
           <small *ngIf="formulario.get('nombre')?.errors?.['required']">
