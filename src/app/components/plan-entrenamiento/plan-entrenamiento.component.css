@@ -12,6 +12,8 @@ body {
   .container {
     width: 40%;
     margin: 0 100px;
+    display: flex;
+    flex-direction: column;
   }
 
   h1 {
@@ -113,4 +115,22 @@ body {
     padding: 1rem;
     margin-top: auto;
     font-family: 'Roboto', sans-serif; /* Usamos la fuente Roboto desde el CSS global */
+  }
+
+  .botones-usuario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .botones-usuario button {
+    background-color: var(--grey); /* Gris oscuro */
+    color: var(--white); /* Blanco */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
