@@ -28,28 +28,28 @@ export class PlanEntrenamientoComponent implements OnInit {
     routineName: 'Cardio',
     exercises: [
       {
-        name: 'Sentadillas',
+        name: 'Press plano',
         description: 'Descripcion del ejercicio',
         sets: 4,
         reps: 12,
         imageUrl:
-          'https://image.tmdb.org/t/p/original/AvNQkQECAOza2WEUDksxexnKujh.jpg',
+          'https://wger.de/media/exercise-images/192/Bench-press-1.png',
       },
       {
-        name: 'Peso muerto',
+        name: 'Abdominales',
         description: 'Descripcion del ejercicio',
         sets: 3,
         reps: 10,
         imageUrl:
-          'https://image.tmdb.org/t/p/original/AvNQkQECAOza2WEUDksxexnKujh.jpg',
+          'https://wger.de/media/exercise-images/91/Crunches-1.png',
       },
       {
-        name: 'Zancadas',
+        name: 'Curl de biceps con barra',
         description: 'Descripcion del ejercicio',
         sets: 3,
         reps: 12,
         imageUrl:
-          'https://image.tmdb.org/t/p/original/AvNQkQECAOza2WEUDksxexnKujh.jpg',
+          'https://wger.de/media/exercise-images/74/Bicep-curls-1.png',
       },
     ],
   };
