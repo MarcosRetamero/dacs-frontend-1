@@ -18,9 +18,7 @@ export class DashboardClienteComponent implements OnInit {
   pesoInicial: number = 0;
   altura: number = 0;
   pesoActual: number = 0;
-  grasaCorporal: number = Math.trunc(
-    this.pesoActual / Math.pow(this.altura / 100, 2)
-  ); // Fórmula: peso (kg) / [estatura (m)]^2
+  grasaCorporal: number = 0; // Se recalculará en ngOnInit()
 
   planEntrenamiento = [
     {
@@ -59,43 +57,30 @@ export class DashboardClienteComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Usar history.state directamente
     console.log('History state completo:', history.state);
 
     if (history.state?.datosActualizados) {
-      // Mostramos los datos recibidos en consola
-      console.log(
-        'Datos recibidos en dashboard:',
-        history.state.datosActualizados
-      );
-      console.log('Desglose de datos:');
-      console.log('- Nombre:', history.state.datosActualizados.nombre);
-      console.log('- Edad:', history.state.datosActualizados.edad);
-      console.log('- Altura:', history.state.datosActualizados.altura);
-      console.log('- Peso Actual:', history.state.datosActualizados.pesoActual);
+      console.log('Datos recibidos en dashboard:', history.state.datosActualizados);
 
-      // Actualizar los datos del usuario
       this.nombre = history.state.datosActualizados.nombre || this.nombre;
       this.edad = history.state.datosActualizados.edad || this.edad;
       this.altura = history.state.datosActualizados.altura || this.altura;
-      this.pesoInicial =
-        history.state.datosActualizados.pesoActual || this.pesoInicial;
-      this.pesoActual =
-        history.state.datosActualizados.pesoActual || this.pesoActual;
+      this.pesoInicial = history.state.datosActualizados.pesoActual || this.pesoInicial;
+      this.pesoActual = history.state.datosActualizados.pesoActual || this.pesoActual;
 
       // Recalcular el IMC con los nuevos datos
-      this.grasaCorporal = Math.trunc(
-        this.pesoActual / Math.pow(this.altura / 100, 2)
-      );
+      if (this.altura > 0) {
+        this.grasaCorporal = Math.trunc(this.pesoActual / Math.pow(this.altura / 100, 2));
+      }
 
-      // Log de los datos actualizados en el componente
-      console.log('Datos actualizados en el componente:');
-      console.log('- Nombre:', this.nombre);
-      console.log('- Edad:', this.edad);
-      console.log('- Altura:', this.altura);
-      console.log('- Peso Inicial:', this.pesoInicial);
-      console.log('- Peso Actual:', this.pesoActual);
-      console.log('- IMC:', this.grasaCorporal);
+      console.log('Datos actualizados en el componente:', {
+        nombre: this.nombre,
+        edad: this.edad,
+        altura: this.altura,
+        pesoInicial: this.pesoInicial,
+        pesoActual: this.pesoActual,
+        IMC: this.grasaCorporal,
+      });
     } else {
       console.log('No se recibieron datos actualizados');
     }
@@ -106,8 +91,11 @@ export class DashboardClienteComponent implements OnInit {
   }
 
   private createChart() {
-    const ctx = this.chartCanvas.nativeElement;
+    if (this.chart) {
+      this.chart.destroy();
+    }
 
+    const ctx = this.chartCanvas.nativeElement;
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -144,85 +132,6 @@ export class DashboardClienteComponent implements OnInit {
           },
         },
       },
-    });
-  }
-
-  cambiarObjetivo() {
-    this.editandoObjetivo = !this.editandoObjetivo;
-    this.objetivoTemporal = this.objetivoFisico;
-  }
-
-  guardarObjetivo() {
-    if (this.objetivoTemporal.trim() !== '') {
-      this.objetivoFisico = this.objetivoTemporal.trim();
-      this.editandoObjetivo = false;
-    }
-  }
-
-  cancelarEdicion() {
-    this.editandoObjetivo = false;
-    this.objetivoTemporal = '';
-  }
-
-  verProgreso() {
-    console.log('Mostrando progreso');
-  }
-
-  agregarPeso() {
-    this.editandoPeso = true;
-    this.pesoTemporal = this.pesoActual;
-  }
-
-  guardarPeso() {
-    if (this.pesoTemporal > 0) {
-      this.pesoActual = this.pesoTemporal;
-      this.editandoPeso = false;
-    }
-  }
-
-  cancelarEdicionPeso() {
-    this.editandoPeso = false;
-    this.pesoTemporal = this.pesoActual;
-  }
-
-  editarDatos() {
-    const datosUsuario = {
-      nombre: this.nombre,
-      edad: this.edad,
-      altura: this.altura,
-      pesoActual: this.pesoActual,
-    };
-
-    // Navegamos a la página de registro con los datos
-    this.router.navigate(['/registro-user'], {
-      state: { datos: datosUsuario },
-    });
-  }
-
-  agregarRutina() {
-    this.router.navigate(['/agregar-ejercicios']);
-  }
-
-  verRutina() {
-    this.router.navigate(['/plan-entrenamiento']);
-  }
-
-  editarRutina(dia: any) {
-    // Log de los datos que vamos a enviar
-    console.log('Datos a enviar a plan-entrenamiento:');
-    console.log('- Nombre del usuario:', this.nombre);
-    console.log('- Día seleccionado:', dia.dia);
-
-    const datosRutina = {
-      nombreUsuario: this.nombre,
-      diaSeleccionado: dia.dia,
-    };
-
-    console.log('Objeto completo a enviar:', datosRutina);
-
-    // Navegamos a plan-entrenamiento con los datos
-    this.router.navigate(['/plan-entrenamiento'], {
-      state: { datosRutina },
     });
   }
 }

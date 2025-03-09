@@ -20,7 +20,7 @@ export class HistoricalProgressService {
 
   constructor(private http: HttpClient, private authService: AuthService) {
     // Obtiene el token de autenticación
-    this.authService.getToken().subscribe(token => {
+    this.authService.getToken().subscribe((token: string | null) => {
       this.token = token;
     });
   }

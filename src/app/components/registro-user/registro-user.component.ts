@@ -1,3 +1,99 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CustomerService, Customer } from '../services/customer.service';
+import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
+
+interface CustomerResponse {
+  customer: Customer;
+  isNewUser: boolean;
+}
+
+@Component({
+  selector: 'app-registro-user',
+  templateUrl: './registro-user.component.html',
+  styleUrls: ['./registro-user.component.css'],
+})
+export class RegistroUserComponent implements OnInit {
+  formulario: FormGroup;
+  vieneDeDashboard: boolean = false;
+  userId: string = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private customerService: CustomerService,
+    private authService: AuthService
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { datos: any };
+    this.vieneDeDashboard = !!state?.datos;
+
+    this.formulario = this.fb.group({
+      nombre: [{ value: '', disabled: this.vieneDeDashboard }, [Validators.required, Validators.minLength(2)]],
+      edad: [null, [Validators.required, Validators.min(1), Validators.max(120)]],
+      estatura: [null, [Validators.required, Validators.min(1), Validators.max(300)]],
+      peso: [null, [Validators.required, Validators.min(1), Validators.max(500)]],
+    });
+  }
+
+  ngOnInit(): void {
+    this.authService.getUserId().subscribe((id: string) => {
+      this.userId = id;
+      this.loadUserData(id);
+    });
+  }
+
+  loadUserData(id: string): void {
+    this.customerService.isNewUser(+id).subscribe(
+      (response: CustomerResponse) => {
+        const { customer, isNewUser } = response;
+        if (!isNewUser) {
+          this.formulario.patchValue({
+            nombre: customer.name,
+            edad: customer.age,
+            estatura: customer.stature,
+            peso: customer.actualWeight,
+          });
+        }
+      },
+      (error: Error) => console.error('Error al cargar datos del usuario:', error)
+    );
+  }
+
+  onSubmit(): void {
+    if (this.formulario.valid) {
+      const customerData: Customer = {
+        id: this.userId,
+        name: this.formulario.get('nombre')?.value,
+        age: this.formulario.get('edad')?.value,
+        stature: this.formulario.get('estatura')?.value,
+        actualWeight: this.formulario.get('peso')?.value,
+      };
+
+      this.customerService.getCustomerById(+this.userId).subscribe(
+        (existingCustomer: Customer) => {
+          // Si el usuario ya existe, actualizar
+          this.customerService.updateCustomer(+this.userId, customerData).subscribe(
+            () => this.router.navigate(['/dashboard-cliente']),
+            (error: Error) => console.error('Error al actualizar:', error)
+          );
+        },
+        () => {
+          // Si no existe, crearlo
+          this.customerService.addCustomer(customerData).subscribe(
+            () => this.router.navigate(['/dashboard-cliente']),
+            (error: Error) => console.error('Error al registrar:', error)
+          );
+        }
+      );
+    }
+  }
+}
+
+
+/* CODIGO MOCKEADO
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -67,4 +163,4 @@ export class RegistroUserComponent {
       console.log('Formulario inválido:', this.formulario.errors);
     }
   }
-}
+} */
