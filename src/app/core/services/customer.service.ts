@@ -36,7 +36,7 @@ export class CustomerService {
   }
 
   // Obtener un cliente por su ID
-  getCustomerById(id: number): Observable<Customer> {
+  getCustomerById(id: string): Observable<Customer> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
     });
@@ -55,7 +55,7 @@ export class CustomerService {
   }
 
   // Actualizar un cliente
-  updateCustomer(id: number, customer: Customer): Observable<Customer> {
+  updateCustomer(id: string, customer: Customer): Observable<Customer> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ export class CustomerService {
   }
 
   // Eliminar un cliente
-  deleteCustomer(id: number): Observable<void> {
+  deleteCustomer(id: string): Observable<void> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
     });
@@ -75,7 +75,7 @@ export class CustomerService {
 
 
     // Obtener un cliente por su ID y verificar campos vacíos
-    isNewUser(id: number): Observable<{ customer: Customer, isNewUser: boolean }> {
+    isNewUser(id: string): Observable<{ customer: Customer, isNewUser: boolean }> {
       const headers = new HttpHeaders({
         Authorization: `Bearer ${this.token}`
       });

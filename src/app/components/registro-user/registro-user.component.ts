@@ -31,10 +31,22 @@ export class RegistroUserComponent implements OnInit {
     this.vieneDeDashboard = !!state?.datos;
 
     this.formulario = this.fb.group({
-      nombre: [{ value: '', disabled: this.vieneDeDashboard }, [Validators.required, Validators.minLength(2)]],
-      edad: [null, [Validators.required, Validators.min(1), Validators.max(120)]],
-      estatura: [null, [Validators.required, Validators.min(1), Validators.max(300)]],
-      peso: [null, [Validators.required, Validators.min(1), Validators.max(500)]],
+      nombre: [
+        { value: '', disabled: this.vieneDeDashboard },
+        [Validators.required, Validators.minLength(2)],
+      ],
+      edad: [
+        null,
+        [Validators.required, Validators.min(1), Validators.max(120)],
+      ],
+      estatura: [
+        null,
+        [Validators.required, Validators.min(1), Validators.max(300)],
+      ],
+      peso: [
+        null,
+        [Validators.required, Validators.min(1), Validators.max(500)],
+      ],
     });
   }
 
@@ -58,7 +70,8 @@ export class RegistroUserComponent implements OnInit {
           });
         }
       },
-      (error: Error) => console.error('Error al cargar datos del usuario:', error)
+      (error: Error) =>
+        console.error('Error al cargar datos del usuario:', error)
     );
   }
 
@@ -75,10 +88,12 @@ export class RegistroUserComponent implements OnInit {
       this.customerService.getCustomerById(+this.userId).subscribe(
         (existingCustomer: Customer) => {
           // Si el usuario ya existe, actualizar
-          this.customerService.updateCustomer(+this.userId, customerData).subscribe(
-            () => this.router.navigate(['/dashboard-cliente']),
-            (error: Error) => console.error('Error al actualizar:', error)
-          );
+          this.customerService
+            .updateCustomer(+this.userId, customerData)
+            .subscribe(
+              () => this.router.navigate(['/dashboard-cliente']),
+              (error: Error) => console.error('Error al actualizar:', error)
+            );
         },
         () => {
           // Si no existe, crearlo
@@ -91,7 +106,6 @@ export class RegistroUserComponent implements OnInit {
     }
   }
 }
-
 
 /* CODIGO MOCKEADO
 import { Component } from '@angular/core';
